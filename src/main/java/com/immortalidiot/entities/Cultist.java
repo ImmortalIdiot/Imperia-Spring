@@ -2,6 +2,8 @@ package com.immortalidiot.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "cultists")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -21,7 +23,7 @@ public class Cultist {
 
     private Integer thanksGiving;
 
-    //TODO: add set<Quest> quests
+    private Set<Quest> quests;
 
     public Cultist(String nickname,
                    String lastName,
@@ -105,5 +107,14 @@ public class Cultist {
     public void setThanksGiving(Integer thanksGiving) {
         if (thanksGiving > 0) { this.thanksGiving = thanksGiving; }
         else throw new IllegalArgumentException("Incorrect thanks giving count");
+    }
+
+    @ManyToMany(mappedBy = "cultists")
+    public Set<Quest> getQuests() {
+        return quests;
+    }
+
+    public void setTasks(Set<Quest> quests) {
+        this.quests = quests;
     }
 }
