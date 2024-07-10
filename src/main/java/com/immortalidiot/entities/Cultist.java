@@ -14,7 +14,7 @@ public class Cultist {
     private String grade;
     private String rank;
     private City city;
-    private Integer thanksGiving;
+    private int thanksGiving;
     private Set<Quest> quests;
 
     public Cultist(String nickname,
@@ -92,11 +92,11 @@ public class Cultist {
     }
 
     @Column(name = "thanks_giving", nullable = false)
-    public Integer getThanksGiving() {
+    public int getThanksGiving() {
         return thanksGiving;
     }
 
-    public void setThanksGiving(Integer thanksGiving) {
+    public void setThanksGiving(int thanksGiving) {
         if (thanksGiving > 0) { this.thanksGiving = thanksGiving; }
         else throw new IllegalArgumentException("Incorrect thanks giving count");
     }
