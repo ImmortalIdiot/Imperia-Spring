@@ -36,7 +36,7 @@ public class City {
         this.area = area;
     }
 
-    @OneToMany(mappedBy = "city")
+    @OneToMany(mappedBy = "city", targetEntity = Cultist.class)
     public Set<Cultist> getCultists() {
         return cultists;
     }

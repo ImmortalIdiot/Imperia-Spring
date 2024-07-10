@@ -70,7 +70,7 @@ public class Deal {
         this.amount = amount;
     }
 
-    @OneToOne(mappedBy = "deal")
+    @OneToOne(mappedBy = "deal", targetEntity = Quest.class)
     public Quest getQuest() {
         return quest;
     }

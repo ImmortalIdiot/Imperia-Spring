@@ -36,7 +36,7 @@ public class Manager {
         this.phoneNumber = phoneNumber;
     }
 
-    @OneToMany(mappedBy = "manager")
+    @OneToMany(mappedBy = "manager", targetEntity = Deal.class)
     public List<Deal> getDeals() {
         return deals;
     }

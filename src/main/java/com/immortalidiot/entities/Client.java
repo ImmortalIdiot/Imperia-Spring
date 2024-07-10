@@ -36,7 +36,7 @@ public class Client {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", targetEntity = Deal.class)
     public List<Deal> getDeals() {
         return deals;
     }
