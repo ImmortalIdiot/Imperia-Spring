@@ -25,7 +25,7 @@ public class City {
         this.name = name;
     }
 
-    @Column(name = "area")
+    @Column(name = "area", nullable = false)
     public String getArea() {
         return area;
     }
