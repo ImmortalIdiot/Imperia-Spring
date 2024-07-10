@@ -19,8 +19,7 @@ public class Quest {
     private Set<Cultist> cultists;
     private Deal deal;
 
-    public Quest(Long questId,
-                 String questType,
+    public Quest(String questType,
                  String minGrade,
                  String minRank,
                  int numCultists,
@@ -30,7 +29,6 @@ public class Quest {
                  String punishment,
                  Set<Cultist> cultists,
                  Deal deal) {
-        this.questId = questId;
         this.questType = questType;
         this.minGrade = minGrade;
         this.minRank = minRank;

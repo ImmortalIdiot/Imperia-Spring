@@ -14,8 +14,7 @@ public class Deal {
 
     public Deal() {}
 
-    public Deal(Long dealId, Manager manager, Client client, String clientTerms, double amount) {
-        this.dealId = dealId;
+    public Deal(Manager manager, Client client, String clientTerms, double amount) {
         this.manager = manager;
         this.client = client;
         this.clientTerms = clientTerms;
