@@ -7,8 +7,8 @@ import java.util.Set;
 @Entity
 @Table(name = "quest")
 public class Quest {
-    private String taskId;
-    private String taskType;
+    private Long questId;
+    private String questType;
     private String minGrade;
     private String minRank;
     private int numCultists;
@@ -19,9 +19,19 @@ public class Quest {
     private Set<Cultist> cultists;
     private Deal deal;
 
-    public Quest(String taskId, String taskType, String minGrade, String minRank, int numCultists, Date dateFormed, Date dateCompleted, String reward, String punishment, Set<Cultist> cultists, Deal deal) {
-        this.taskId = taskId;
-        this.taskType = taskType;
+    public Quest(Long questId,
+                 String questType,
+                 String minGrade,
+                 String minRank,
+                 int numCultists,
+                 Date dateFormed,
+                 Date dateCompleted,
+                 String reward,
+                 String punishment,
+                 Set<Cultist> cultists,
+                 Deal deal) {
+        this.questId = questId;
+        this.questType = questType;
         this.minGrade = minGrade;
         this.minRank = minRank;
         this.numCultists = numCultists;
@@ -36,22 +46,23 @@ public class Quest {
     public Quest() {}
 
     @Id
-    @Column(name = "task_id", nullable = false)
-    public String getTaskId() {
-        return taskId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "quest_id", nullable = false)
+    public Long getQuestId() {
+        return questId;
     }
 
-    public void setTaskId(String taskId) {
-        this.taskId = taskId;
+    public void setQuestId(Long questId) {
+        this.questId = questId;
     }
 
-    @Column(name = "task_type", nullable = false)
-    public String getTaskType() {
-        return taskType;
+    @Column(name = "quest_type", nullable = false)
+    public String getQuestType() {
+        return questType;
     }
 
-    public void setTaskType(String taskType) {
-        this.taskType = taskType;
+    public void setQuestType(String questType) {
+        this.questType = questType;
     }
 
     @Column(name = "min_grade")
