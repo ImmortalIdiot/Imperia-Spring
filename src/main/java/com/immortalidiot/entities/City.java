@@ -15,6 +15,8 @@ public class City {
         this.area = area;
     }
 
+    public City() {}
+
     @OneToMany
     @JoinColumn(name = "name", nullable = false)
     public String getName() {
