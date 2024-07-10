@@ -8,7 +8,7 @@ import java.util.List;
 public class Client {
     private String contact;
     private String name;
-    private List<Deal> deals; // TODO: implement Deal class
+    private List<Deal> deals;
 
     public Client() {}
 

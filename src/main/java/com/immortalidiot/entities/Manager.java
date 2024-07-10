@@ -8,7 +8,7 @@ import java.util.List;
 public class Manager {
     private String code;
     private String phoneNumber;
-    private List<Deal> deals; // TODO: implement Deal class
+    private List<Deal> deals;
 
     public Manager(String code, String phoneNumber) {
         this.code = code;
