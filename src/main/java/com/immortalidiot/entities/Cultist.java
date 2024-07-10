@@ -8,21 +8,13 @@ import java.util.Set;
 @Table(name = "cultists")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Cultist {
-
     private String nickname;
-
     private String lastName;
-
     private String firstName;
-
     private String grade;
-
     private String rank;
-
     private City city;
-
     private Integer thanksGiving;
-
     private Set<Quest> quests;
 
     public Cultist(String nickname,

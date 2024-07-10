@@ -2,7 +2,6 @@ package com.immortalidiot.entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -10,9 +9,7 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class City {
     private String name;
-
     private String area;
-
     private Set<Cultist> cultists;
 
     public City(String name, String area) {
