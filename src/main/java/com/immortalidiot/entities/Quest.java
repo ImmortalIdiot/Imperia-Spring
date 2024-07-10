@@ -63,7 +63,7 @@ public class Quest {
         this.questType = questType;
     }
 
-    @Column(name = "min_grade")
+    @Column(name = "min_grade", nullable = false)
     public String getMinGrade() {
         return minGrade;
     }
