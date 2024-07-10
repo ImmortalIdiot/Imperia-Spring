@@ -17,6 +17,7 @@ public class City {
 
     public City() {}
 
+    @Id
     @OneToMany
     @JoinColumn(name = "name", nullable = false)
     public String getName() {
