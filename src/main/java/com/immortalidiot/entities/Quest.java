@@ -129,7 +129,7 @@ public class Quest {
     @ManyToMany
     @JoinTable(
             name = "task_cultist",
-            joinColumns = @JoinColumn(name = "task_id"),
+            joinColumns = @JoinColumn(name = "quest_id"),
             inverseJoinColumns = @JoinColumn(name = "cultist_nickname")
     )
     public Set<Cultist> getCultists() {
