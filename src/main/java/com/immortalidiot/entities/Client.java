@@ -10,12 +10,12 @@ public class Client {
     private String name;
     private List<Deal> deals;
 
-    public Client() {}
-
     public Client(String contact, String name) {
         this.contact = contact;
         this.name = name;
     }
+
+    public Client() {}
 
     @Id
     @Column(name = "contact")

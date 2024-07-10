@@ -1,7 +1,6 @@
 package com.immortalidiot.entities;
 
 import jakarta.persistence.*;
-
 import java.util.Set;
 
 @Entity
