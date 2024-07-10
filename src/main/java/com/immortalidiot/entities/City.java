@@ -5,7 +5,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "cities")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class City {
     private String name;
     private String area;

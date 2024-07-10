@@ -5,7 +5,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "cultists")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Cultist {
     private String nickname;
     private String lastName;
