@@ -2,6 +2,8 @@ package com.immortalidiot.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "cities")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -9,6 +11,8 @@ public class City {
     private String name;
 
     private String area;
+
+    private List<Cultist> cultists;
 
     public City(String name, String area) {
         this.name = name;
@@ -18,7 +22,6 @@ public class City {
     public City() {}
 
     @Id
-    @OneToMany
     @JoinColumn(name = "name", nullable = false)
     public String getName() {
         return name;
@@ -35,5 +38,14 @@ public class City {
 
     public void setArea(String area) {
         this.area = area;
+    }
+
+    @OneToMany(mappedBy = "city")
+    public List<Cultist> getCultists() {
+        return cultists;
+    }
+
+    public void setCultists(List<Cultist> cultists) {
+        this.cultists = cultists;
     }
 }
