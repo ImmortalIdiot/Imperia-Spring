@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "deal")
 public class Deal {
-    private String dealNumber;
+    private Long dealId;
     private Manager manager;
     private Client client;
     private String clientTerms;
@@ -14,8 +14,8 @@ public class Deal {
 
     public Deal() {}
 
-    public Deal(String dealNumber, Manager manager, Client client, String clientTerms, double amount) {
-        this.dealNumber = dealNumber;
+    public Deal(Long dealId, Manager manager, Client client, String clientTerms, double amount) {
+        this.dealId = dealId;
         this.manager = manager;
         this.client = client;
         this.clientTerms = clientTerms;
@@ -23,13 +23,14 @@ public class Deal {
     }
 
     @Id
-    @Column(name = "deal_number", nullable = false)
-    public String getDealNumber() {
-        return dealNumber;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "deal_id", nullable = false)
+    public Long getDealId() {
+        return dealId;
     }
 
-    public void setDealNumber(String dealNumber) {
-        this.dealNumber = dealNumber;
+    public void setDealId(Long dealId) {
+        this.dealId = dealId;
     }
 
     @ManyToOne
