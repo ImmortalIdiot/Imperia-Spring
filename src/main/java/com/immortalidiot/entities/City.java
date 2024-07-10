@@ -3,6 +3,7 @@ package com.immortalidiot.entities;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "cities")
@@ -12,7 +13,7 @@ public class City {
 
     private String area;
 
-    private List<Cultist> cultists;
+    private Set<Cultist> cultists;
 
     public City(String name, String area) {
         this.name = name;
@@ -41,11 +42,11 @@ public class City {
     }
 
     @OneToMany(mappedBy = "city")
-    public List<Cultist> getCultists() {
+    public Set<Cultist> getCultists() {
         return cultists;
     }
 
-    public void setCultists(List<Cultist> cultists) {
+    public void setCultists(Set<Cultist> cultists) {
         this.cultists = cultists;
     }
 }
