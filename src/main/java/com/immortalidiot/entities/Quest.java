@@ -14,12 +14,12 @@ public class Quest {
     private int numCultists;
     private Date dateFormed;
     private Date dateCompleted;
-    private double reward;
-    private double punishment;
+    private String reward;
+    private String punishment;
     private Set<Cultist> cultists;
     private Deal deal;
 
-    public Quest(String taskId, String taskType, String minGrade, String minRank, int numCultists, Date dateFormed, Date dateCompleted, double reward, double punishment, Set<Cultist> cultists, Deal deal) {
+    public Quest(String taskId, String taskType, String minGrade, String minRank, int numCultists, Date dateFormed, Date dateCompleted, String reward, String punishment, Set<Cultist> cultists, Deal deal) {
         this.taskId = taskId;
         this.taskType = taskType;
         this.minGrade = minGrade;
@@ -100,20 +100,20 @@ public class Quest {
     }
 
     @Column(name = "reward", nullable = false)
-    public double getReward() {
+    public String getReward() {
         return reward;
     }
 
-    public void setReward(double reward) {
+    public void setReward(String reward) {
         this.reward = reward;
     }
 
     @Column(name = "punishment", nullable = false)
-    public double getPunishment() {
+    public String getPunishment() {
         return punishment;
     }
 
-    public void setPunishment(double punishment) {
+    public void setPunishment(String punishment) {
         this.punishment = punishment;
     }
 
