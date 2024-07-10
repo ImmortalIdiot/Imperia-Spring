@@ -10,7 +10,7 @@ public class Deal {
     private Client client;
     private String clientTerms;
     private double amount;
-    private Quest quest; // TODO: implement Quest class
+    private Quest quest;
 
     public Deal() {}
 
