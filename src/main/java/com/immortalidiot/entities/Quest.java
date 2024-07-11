@@ -3,7 +3,6 @@ package com.immortalidiot.entities;
 import jakarta.persistence.*;
 
 import java.time.OffsetDateTime;
-import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -42,7 +41,8 @@ public class Quest extends IdEntity {
         this.deal = deal;
     }
 
-    protected Quest() {}
+    protected Quest() {
+    }
 
     @Column(name = "quest_type", nullable = false)
     public String getQuestType() {
