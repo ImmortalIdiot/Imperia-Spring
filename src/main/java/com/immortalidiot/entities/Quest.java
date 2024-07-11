@@ -1,6 +1,7 @@
 package com.immortalidiot.entities;
 
 import com.immortalidiot.entities.enums.QuestStatus;
+import com.immortalidiot.entities.enums.QuestType;
 import jakarta.persistence.*;
 
 import java.time.OffsetDateTime;
@@ -9,7 +10,7 @@ import java.util.Set;
 @Entity
 @Table(name = "quest")
 public class Quest {
-    private String questType;
+    private QuestType questType;
     private QuestStatus questStatus;
     private String minGrade;
     private String minRank;
@@ -21,7 +22,7 @@ public class Quest {
     private Set<Cultist> cultists;
     private Deal deal;
 
-    public Quest(String questType,
+    public Quest(QuestType questType,
                  String minGrade,
                  String minRank,
                  int numCultists,
@@ -47,11 +48,11 @@ public class Quest {
     protected Quest() {}
 
     @Column(name = "quest_type", nullable = false)
-    public String getQuestType() {
+    public QuestType getQuestType() {
         return questType;
     }
 
-    public void setQuestType(String questType) {
+    public void setQuestType(QuestType questType) {
         this.questType = questType;
     }
 
