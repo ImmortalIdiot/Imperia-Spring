@@ -99,7 +99,7 @@ public class Cultist {
         else throw new IllegalArgumentException("Incorrect thanks giving count");
     }
 
-    @ManyToMany(mappedBy = "cultists", targetEntity = Quest.class)
+    @ManyToMany(mappedBy = "cultists", targetEntity = Quest.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public Set<Quest> getQuests() {
         return quests;
     }

@@ -36,7 +36,7 @@ public class Client {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "client", targetEntity = Deal.class)
+    @OneToMany(mappedBy = "client", targetEntity = Deal.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public Set<Deal> getDeals() {
         return deals;
     }

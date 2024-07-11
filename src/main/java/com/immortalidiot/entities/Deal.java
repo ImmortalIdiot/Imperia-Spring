@@ -59,7 +59,7 @@ public class Deal extends IdEntity {
         else throw new IllegalArgumentException("Incorrect amount");
     }
 
-    @OneToOne(mappedBy = "deal", targetEntity = Quest.class)
+    @OneToOne(mappedBy = "deal", targetEntity = Quest.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     public Quest getQuest() {
         return quest;
     }

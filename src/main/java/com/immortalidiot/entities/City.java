@@ -36,7 +36,7 @@ public class City {
         this.area = area;
     }
 
-    @OneToMany(mappedBy = "city", targetEntity = Cultist.class)
+    @OneToMany(mappedBy = "city", targetEntity = Cultist.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     public Set<Cultist> getCultists() {
         return cultists;
     }
