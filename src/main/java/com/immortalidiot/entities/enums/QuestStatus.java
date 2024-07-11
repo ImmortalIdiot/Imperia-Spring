@@ -4,5 +4,6 @@ public enum QuestStatus {
     FORMED,
     AVAILABLE,
     ONGOING,
-    COMPLETED
+    COMPLETED,
+    FAILED
 }
