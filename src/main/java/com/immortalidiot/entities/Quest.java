@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "quest")
-public class Quest {
+public class Quest extends IdEntity {
     private String questType;
     private String minGrade;
     private String minRank;
