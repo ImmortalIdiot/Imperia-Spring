@@ -108,7 +108,8 @@ public class Quest extends IdEntity {
     }
 
     public void setDateCompleted(OffsetDateTime dateCompleted) {
-        this.dateCompleted = dateCompleted;
+        if (dateFormed.isBefore(dateCompleted)) { this.dateCompleted = dateCompleted; }
+        else throw new IllegalArgumentException("Incorrect completed date");
     }
 
     @Column(name = "reward", nullable = false)
