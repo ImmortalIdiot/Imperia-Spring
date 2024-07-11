@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Set;
 
 @Entity
-@Table(name = "quest")
+@Table(name = "quests")
 public class Quest extends IdEntity {
     private String questType;
     private String minGrade;
@@ -118,7 +118,7 @@ public class Quest extends IdEntity {
 
     @ManyToMany
     @JoinTable(
-            name = "task_cultist",
+            name = "quest_cultist",
             joinColumns = @JoinColumn(name = "quest_id"),
             inverseJoinColumns = @JoinColumn(name = "cultist_nickname")
     )
