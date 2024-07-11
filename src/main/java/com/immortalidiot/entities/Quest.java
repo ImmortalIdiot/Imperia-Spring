@@ -7,7 +7,6 @@ import java.util.Set;
 @Entity
 @Table(name = "quest")
 public class Quest {
-    private Long questId;
     private String questType;
     private String minGrade;
     private String minRank;
@@ -42,17 +41,6 @@ public class Quest {
     }
 
     protected Quest() {}
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "quest_id", nullable = false)
-    public Long getQuestId() {
-        return questId;
-    }
-
-    public void setQuestId(Long questId) {
-        this.questId = questId;
-    }
 
     @Column(name = "quest_type", nullable = false)
     public String getQuestType() {
