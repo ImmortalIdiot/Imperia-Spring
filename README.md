@@ -4,7 +4,7 @@
 
 ### Диаграмма классов
 
-![image](https://github.com/user-attachments/assets/e758e6c7-be5d-4c88-a977-5c9874862e14)
+![image](https://github.com/user-attachments/assets/411f90e6-b657-4f20-906a-2c9e2799a751)
 
 
 
