@@ -67,7 +67,8 @@ public class Deal {
     }
 
     public void setAmount(int amount) {
-        this.amount = amount;
+        if (amount > 0) { this.amount = amount; }
+        else throw new IllegalArgumentException("Incorrect amount");
     }
 
     @OneToOne(mappedBy = "deal", targetEntity = Quest.class)
