@@ -12,14 +12,14 @@ public class Deal {
     private double amount;
     private Quest quest;
 
-    public Deal() {}
-
     public Deal(Manager manager, Client client, String clientTerms, double amount) {
         this.manager = manager;
         this.client = client;
         this.clientTerms = clientTerms;
         this.amount = amount;
     }
+
+    protected Deal() {}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

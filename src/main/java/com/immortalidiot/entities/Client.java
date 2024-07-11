@@ -15,7 +15,7 @@ public class Client {
         this.name = name;
     }
 
-    public Client() {}
+    protected Client() {}
 
     @Id
     @Column(name = "contact")

@@ -31,7 +31,7 @@ public class Cultist {
         this.thanksGiving = thanksGiving;
     }
 
-    public Cultist() {}
+    protected Cultist() {}
 
     @Id
     @Column(name = "nickname", nullable = false)

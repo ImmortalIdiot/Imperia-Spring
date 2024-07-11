@@ -15,7 +15,7 @@ public class Manager {
         this.phoneNumber = phoneNumber;
     }
 
-    public Manager() {}
+    protected Manager() {}
 
     @Id
     @Column(name = "code", nullable = false)

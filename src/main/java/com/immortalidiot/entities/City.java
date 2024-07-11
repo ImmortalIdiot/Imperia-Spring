@@ -15,7 +15,7 @@ public class City {
         this.area = area;
     }
 
-    public City() {}
+    protected City() {}
 
     @Id
     @JoinColumn(name = "name", nullable = false)

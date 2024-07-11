@@ -41,7 +41,7 @@ public class Quest {
         this.deal = deal;
     }
 
-    public Quest() {}
+    protected Quest() {}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
