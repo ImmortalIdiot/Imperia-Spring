@@ -80,7 +80,7 @@ public class Cultist {
     }
 
     @ManyToOne
-    @JoinColumn(name = "city_name", nullable = false)
+    @JoinColumn(name = "city", nullable = false)
     public City getCity() {
         return city;
     }
