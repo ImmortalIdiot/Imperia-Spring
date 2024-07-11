@@ -1,14 +1,14 @@
 package com.immortalidiot.entities;
 
 import jakarta.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "manager")
 public class Manager {
     private String code;
     private String phoneNumber;
-    private List<Deal> deals;
+    private Set<Deal> deals;
 
     public Manager(String code, String phoneNumber) {
         this.code = code;
@@ -37,11 +37,11 @@ public class Manager {
     }
 
     @OneToMany(mappedBy = "manager", targetEntity = Deal.class)
-    public List<Deal> getDeals() {
+    public Set<Deal> getDeals() {
         return deals;
     }
 
-    public void setDeals(List<Deal> deals) {
+    public void setDeals(Set<Deal> deals) {
         this.deals = deals;
     }
 }
