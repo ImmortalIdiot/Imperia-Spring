@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "deal")
-public class Deal {
-    private Long dealId;
+public class Deal extends IdEntity {
     private Manager manager;
     private Client client;
     private String clientTerms;
@@ -20,17 +19,6 @@ public class Deal {
     }
 
     protected Deal() {}
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "deal_id", nullable = false)
-    public Long getDealId() {
-        return dealId;
-    }
-
-    public void setDealId(Long dealId) {
-        this.dealId = dealId;
-    }
 
     @ManyToOne
     @JoinColumn(name = "manager_code", nullable = false)
