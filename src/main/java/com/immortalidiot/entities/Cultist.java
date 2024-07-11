@@ -104,7 +104,7 @@ public class Cultist {
         return quests;
     }
 
-    public void setTasks(Set<Quest> quests) {
+    public void setQuests(Set<Quest> quests) {
         this.quests = quests;
     }
 }
