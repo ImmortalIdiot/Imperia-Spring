@@ -1,6 +1,8 @@
 package com.immortalidiot.entities;
 
 import jakarta.persistence.*;
+
+import java.time.OffsetDateTime;
 import java.util.Date;
 import java.util.Set;
 
@@ -11,8 +13,8 @@ public class Quest {
     private String minGrade;
     private String minRank;
     private int numCultists;
-    private Date dateFormed;
-    private Date dateCompleted;
+    private OffsetDateTime dateFormed;
+    private OffsetDateTime dateCompleted;
     private String reward;
     private String punishment;
     private Set<Cultist> cultists;
@@ -22,8 +24,8 @@ public class Quest {
                  String minGrade,
                  String minRank,
                  int numCultists,
-                 Date dateFormed,
-                 Date dateCompleted,
+                 OffsetDateTime dateFormed,
+                 OffsetDateTime dateCompleted,
                  String reward,
                  String punishment,
                  Set<Cultist> cultists,
@@ -79,20 +81,20 @@ public class Quest {
     }
 
     @Column(name = "date_formed", nullable = false)
-    public Date getDateFormed() {
+    public OffsetDateTime getDateFormed() {
         return dateFormed;
     }
 
-    public void setDateFormed(Date dateFormed) {
+    public void setDateFormed(OffsetDateTime dateFormed) {
         this.dateFormed = dateFormed;
     }
 
     @Column(name = "date_completed", nullable = false)
-    public Date getDateCompleted() {
+    public OffsetDateTime getDateCompleted() {
         return dateCompleted;
     }
 
-    public void setDateCompleted(Date dateCompleted) {
+    public void setDateCompleted(OffsetDateTime dateCompleted) {
         this.dateCompleted = dateCompleted;
     }
 
