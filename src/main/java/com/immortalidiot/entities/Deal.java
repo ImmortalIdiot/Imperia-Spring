@@ -9,10 +9,10 @@ public class Deal {
     private Manager manager;
     private Client client;
     private String clientTerms;
-    private double amount;
+    private int amount;
     private Quest quest;
 
-    public Deal(Manager manager, Client client, String clientTerms, double amount) {
+    public Deal(Manager manager, Client client, String clientTerms, int amount) {
         this.manager = manager;
         this.client = client;
         this.clientTerms = clientTerms;
@@ -62,11 +62,11 @@ public class Deal {
     }
 
     @Column(name = "amount", nullable = false)
-    public double getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
