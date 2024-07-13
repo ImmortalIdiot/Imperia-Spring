@@ -47,6 +47,7 @@ public class Quest extends IdEntity {
     protected Quest() {
     }
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "quest_type", nullable = false)
     public QuestType getQuestType() {
         return questType;
@@ -56,6 +57,7 @@ public class Quest extends IdEntity {
         this.questType = questType;
     }
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "quest_status", nullable = false)
     public QuestStatus getQuestStatus() {
         return questStatus;
