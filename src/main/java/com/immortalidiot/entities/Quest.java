@@ -30,7 +30,6 @@ public class Quest extends IdEntity {
                  OffsetDateTime dateCompleted,
                  String reward,
                  String punishment,
-                 Set<Cultist> cultists,
                  Deal deal) {
         this.questType = questType;
         this.questStatus = QuestStatus.FORMED;
@@ -41,7 +40,7 @@ public class Quest extends IdEntity {
         this.dateCompleted = dateCompleted;
         this.reward = reward;
         this.punishment = punishment;
-        this.cultists = cultists;
+        this.cultists = null;
         this.deal = deal;
     }
 
