@@ -41,6 +41,7 @@ public class Quest extends IdEntity {
         this.dateCompleted = dateCompleted;
         this.reward = reward;
         this.punishment = punishment;
+        this.chance = 0;
         this.cultists = null;
         this.deal = deal;
     }
