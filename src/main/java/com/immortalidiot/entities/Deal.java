@@ -8,10 +8,10 @@ public class Deal extends IdEntity {
     private Manager manager;
     private Client client;
     private String clientTerms;
-    private int amount;
+    private double amount;
     private Quest quest;
 
-    public Deal(Manager manager, Client client, String clientTerms, int amount) {
+    public Deal(Manager manager, Client client, String clientTerms, double amount) {
         this.manager = manager;
         this.client = client;
         this.clientTerms = clientTerms;
@@ -50,11 +50,11 @@ public class Deal extends IdEntity {
     }
 
     @Column(name = "amount", nullable = false)
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         if (amount > 0) { this.amount = amount; }
         else throw new IllegalArgumentException("Incorrect amount");
     }
