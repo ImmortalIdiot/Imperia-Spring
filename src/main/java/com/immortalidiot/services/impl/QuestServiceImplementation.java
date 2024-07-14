@@ -235,4 +235,9 @@ public class QuestServiceImplementation implements QuestService {
         Random randomizer = new Random();
         return availableQuest.get(randomizer.nextInt(availableQuest.size()));
     }
+
+    private void addCultistToQuest(CultistDTO cultistDTO, Quest quest) {
+        Cultist cultist = cultistRepository.findByNickname(cultistDTO.getNickname());
+        quest.getCultists().add(cultist);
+    }
 }
