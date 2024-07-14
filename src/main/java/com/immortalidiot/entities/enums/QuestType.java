@@ -14,4 +14,7 @@ public enum QuestType {
         this.questType = questType;
         this.number = number;
     }
+    public String getQuestType() {
+        return questType;
+    }
 }
