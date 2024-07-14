@@ -188,4 +188,25 @@ public class QuestServiceImplementation implements QuestService {
 
         return typeCountMap;
     }
+
+    protected QuestType getPriorityQuestStatus(List<Quest> availableQuests) {
+        Map<QuestType, Integer> failedQuests = getQuestTypeCount(availableQuests, QuestStatus.FAILED);
+        Map<QuestType, Integer> completedQuests = getQuestTypeCount(availableQuests, QuestStatus.COMPLETED);
+
+        int maxDifference = 0;
+        QuestType priorityType = null;
+
+        for (QuestType type : completedQuests.keySet()) {
+            int completed = completedQuests.getOrDefault(type, 0);
+            int failed = failedQuests.getOrDefault(type, 0);
+            int difference = completed - failed;
+
+            if (difference > maxDifference) {
+                maxDifference = difference;
+                priorityType = type;
+            }
+        }
+
+        return priorityType;
+    }
 }
