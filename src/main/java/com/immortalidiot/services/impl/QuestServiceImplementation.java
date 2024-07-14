@@ -225,7 +225,7 @@ public class QuestServiceImplementation implements QuestService {
         return sortedQuests;
     }
 
-    public List<Quest> getSortedQuestsForCultist(CultistDTO cultist) {
+    protected List<Quest> getSortedQuestsForCultist(CultistDTO cultist) {
         List<Quest> completedOrFailedQuests = getAllQuestsForCultist(cultist);
         QuestType priorityQuestType = getPriorityQuestType(completedOrFailedQuests);
         return sortQuestsByPriority(completedOrFailedQuests, priorityQuestType);
