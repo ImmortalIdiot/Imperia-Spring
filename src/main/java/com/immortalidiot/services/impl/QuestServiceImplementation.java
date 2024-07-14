@@ -13,9 +13,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class QuestServiceImplementation implements QuestService {
 
@@ -176,5 +174,18 @@ public class QuestServiceImplementation implements QuestService {
         }
 
         return availableQuests;
+    }
+
+    protected Map<QuestType, Integer> getQuestTypeCount(List<Quest> quests, QuestStatus status) {
+        Map<QuestType, Integer> typeCountMap = new HashMap<>();
+
+        for (Quest quest : quests) {
+            if (quest.getQuestStatus() == status) {
+                typeCountMap.put(quest.getQuestType(),
+                        typeCountMap.getOrDefault(quest.getQuestType(), 0) + 1);
+            }
+        }
+
+        return typeCountMap;
     }
 }
