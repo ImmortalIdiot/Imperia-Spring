@@ -82,7 +82,7 @@ public class DealServiceImplementation implements DealService {
         return cost;
     }
 
-    private QuestType defineQuestType(String questType) {
+    protected QuestType defineQuestType(String questType) {
         for (QuestType type : QuestType.values()) {
             if (type.getQuestType().equalsIgnoreCase(questType)) {
                 return type;
