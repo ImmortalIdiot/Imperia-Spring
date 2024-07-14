@@ -118,24 +118,35 @@ public class QuestServiceImplementation implements QuestService {
         return punishment;
     }
 
+    private OffsetDateTime localDateToOffsetDateTime(LocalDate localDate) {
+        ZoneOffset offset = ZoneOffset.ofHours(3);
+        return localDate.atStartOfDay().atOffset(offset);
+    }
+
+    private void validateRankAndGrade(String rankAndGrade) {
+        if (rankAndGrade == null || rankAndGrade.isBlank()) {
+            throw new IllegalArgumentException("Unknown rank or grade");
+        }
+    }
+
+    private void validateReward(String reward) {
+        if (reward == null || reward.isBlank()) {
+            throw new IllegalArgumentException("Unknown reward");
+        }
+    }
+
+    private void validatePunishment(String punishment) {
+        if (punishment == null || punishment.isBlank()) {
+            throw new IllegalArgumentException("Unknown punishment");
+        }
+    }
+
     @Override
     public List<Quest> getAllQuestsForCultist(Cultist currentCultist) {
         List<Cultist> cultist = new ArrayList<>();
         List<QuestStatus> statuses = Arrays.asList(QuestStatus.COMPLETED, QuestStatus.FAILED);
         cultist.add(currentCultist);
         return questRepository.findQuestsByCultists(cultist, statuses);
-    }
-
-    private void validateRankAndGrade(String rankAndGrade) {
-        if (rankAndGrade == null || rankAndGrade.isBlank()) throw new IllegalArgumentException("Unknown rank or grade");
-    }
-
-    private void validateReward(String reward) {
-        if (reward == null || reward.isBlank()) throw new IllegalArgumentException("Unknown reward");
-    }
-
-    private void validatePunishment(String punishment) {
-        if (punishment == null || punishment.isBlank()) throw new IllegalArgumentException("Unknown punishment");
     }
 
     private List<String> getLowerOrEqualGradesAndRanks(Cultist cultist) {
@@ -165,10 +176,5 @@ public class QuestServiceImplementation implements QuestService {
         }
 
         return availableQuests;
-    }
-
-    private OffsetDateTime localDateToOffsetDateTime(LocalDate localDate) {
-        ZoneOffset offset = ZoneOffset.ofHours(3);
-        return localDate.atStartOfDay().atOffset(offset);
     }
 }
