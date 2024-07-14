@@ -230,4 +230,9 @@ public class QuestServiceImplementation implements QuestService {
         QuestType priorityQuestType = getPriorityQuestType(completedOrFailedQuests);
         return sortQuestsByPriority(completedOrFailedQuests, priorityQuestType);
     }
+
+    protected Quest getRandomQuest(List<Quest> availableQuest) {
+        Random randomizer = new Random();
+        return availableQuest.get(randomizer.nextInt(availableQuest.size()));
+    }
 }
