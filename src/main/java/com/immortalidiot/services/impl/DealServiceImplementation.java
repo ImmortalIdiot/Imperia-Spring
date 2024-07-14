@@ -52,7 +52,7 @@ public class DealServiceImplementation implements DealService {
         // clientTerms example:
         // "bodyguards (description: questType); 14.04.2020 (description: dealDate);
         //             20.04.2020 (description: targetDate); other details"
-        String[] termsParts = clientTerms.split(";");
+        String[] termsParts = clientTerms.split("; ");
 
         QuestType questType = defineQuestType(termsParts[0]);
         validateQuestType(questType);
