@@ -240,4 +240,31 @@ public class QuestServiceImplementation implements QuestService {
         Cultist cultist = cultistRepository.findByNickname(cultistDTO.getNickname());
         quest.getCultists().add(cultist);
     }
+
+    @Override
+    public void updateSelectedQuest(CultistDTO cultistDTO) {
+        List<Quest> availableQuests = getSortedQuestsForCultist(cultistDTO);
+
+        Quest selectedQuest = getRandomQuest(availableQuests);
+
+        addCultistToQuest(cultistDTO, selectedQuest);
+        selectedQuest.setChance(selectedQuest.getChance() + 1);
+
+        int numCultists = selectedQuest.getNumCultists();
+        int chance;
+
+        if (selectedQuest.getQuestType() == getPriorityQuestType(availableQuests)) {
+            if (numCultists == 1) { chance = 90; }
+            else { chance = 80; }
+        } else {
+            if (numCultists == 1) { chance = 70; }
+            else { chance = 60; }
+        }
+
+        selectedQuest.setChance(chance);
+
+        if (chance >= 80 && numCultists == selectedQuest.getNumCultists()) {
+            selectedQuest.setQuestStatus(QuestStatus.ONGOING);
+        }
+    }
 }
