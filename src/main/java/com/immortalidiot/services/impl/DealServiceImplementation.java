@@ -69,6 +69,8 @@ public class DealServiceImplementation implements DealService {
 
         LocalDate registrationDate =LocalDate.parse(termsParts[1]);
         LocalDate targetDate = LocalDate.parse(termsParts[2]);
+        validateDate(registrationDate, targetDate);
+
         long urgency = Duration.between(registrationDate, targetDate).toDays();
 
         if (urgency <= 7) {
@@ -97,5 +99,10 @@ public class DealServiceImplementation implements DealService {
 
     private void validateQuestType(QuestType questType) {
         if (questType == null) throw new IllegalArgumentException("Unknown quest type");
+    }
+
+    private void validateDate(LocalDate registrationDate, LocalDate targetDate) {
+        if (registrationDate.isAfter(targetDate)) throw new IllegalArgumentException(
+                "Incorrect registration date or target date");
     }
 }
