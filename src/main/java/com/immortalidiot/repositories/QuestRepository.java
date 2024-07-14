@@ -19,4 +19,11 @@ public interface QuestRepository extends JpaRepository <Quest, Long> {
 
     @Query(value = "SELECT q FROM Quest q WHERE q.questStatus = :status")
     List<Quest> findQuestsByQuestStatus(@Param("status") QuestStatus questStatus);
+
+    @Query(value = "SELECT q " +
+            "FROM Quest q " +
+            "WHERE q.minGrade = :minGrade AND q.minRank = :minRank AND q.questStatus = :status")
+    List<Quest> findByMinGradeAndMinRankAndQuestStatus(@Param("minGrade") String minGrade,
+                                                       @Param("minRank") String minRank,
+                                                       @Param("status") QuestStatus questStatus);
 }
