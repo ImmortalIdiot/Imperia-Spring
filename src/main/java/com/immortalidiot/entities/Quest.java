@@ -19,6 +19,7 @@ public class Quest extends IdEntity {
     private OffsetDateTime dateCompleted;
     private String reward;
     private String punishment;
+    private int chance;
     private Set<Cultist> cultists;
     private Deal deal;
 
@@ -129,6 +130,15 @@ public class Quest extends IdEntity {
 
     public void setPunishment(String punishment) {
         this.punishment = punishment;
+    }
+
+    @Column(name = "chance", nullable = false)
+    public int getChance() {
+        return chance;
+    }
+
+    public void setChance(int chance) {
+        this.chance = chance;
     }
 
     @ManyToMany
