@@ -3,6 +3,7 @@ package com.immortalidiot.services.impl;
 import com.immortalidiot.entities.Cultist;
 import com.immortalidiot.entities.Deal;
 import com.immortalidiot.entities.Quest;
+import com.immortalidiot.entities.enums.QuestStatus;
 import com.immortalidiot.entities.enums.QuestType;
 import com.immortalidiot.repositories.QuestRepository;
 import com.immortalidiot.services.QuestService;
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class QuestServiceImplementation implements QuestService {
@@ -21,6 +23,13 @@ public class QuestServiceImplementation implements QuestService {
     private QuestRepository questRepository;
 
     private final Deal LATEST_DEAL = dealServiceImplementation.getLatestCreatedDeal();
+
+    private List<String> allGradesAndRanks = Arrays.asList(
+            "Recruit", "Private II", "Private I",
+            "Apprentice III", "Apprentice II", "Apprentice I",
+            "Master III", "Master II", "Master I",
+            "Magister III", "Magister II", "Magister I"
+    );
 
     @Autowired
     public QuestServiceImplementation(DealServiceImplementation dealServiceImplementation,
@@ -126,6 +135,35 @@ public class QuestServiceImplementation implements QuestService {
 
     private void validatePunishment(String punishment) {
         if (punishment == null || punishment.isBlank()) throw new IllegalArgumentException("Unknown punishment");
+    }
+
+    private List<String> getLowerOrEqualGradesAndRanks(Cultist cultist) {
+        List<String> lowerOrEqualGradeAndRanks = new ArrayList<>();
+        String cultistGradeAndRank = cultist.getGrade() + " " + cultist.getRank();
+
+        for (String gradeAndRank : allGradesAndRanks) {
+            lowerOrEqualGradeAndRanks.add(gradeAndRank);
+
+            if (gradeAndRank.equalsIgnoreCase(cultistGradeAndRank)) { break; }
+        }
+
+        return lowerOrEqualGradeAndRanks;
+    }
+
+    public List<Quest> getAvailableQuestsForCultist(Cultist cultist) {
+        List<String> lowerOrEqualGradeRanks = getLowerOrEqualGradesAndRanks(cultist);
+
+        List<Quest> availableQuests = new ArrayList<>();
+
+        for (String gradeAndRank : lowerOrEqualGradeRanks) {
+            List<Quest> quests = questRepository.findByMinGradeAndMinRankAndQuestStatus(
+                    gradeAndRank.split(" ")[0],
+                    gradeAndRank.split(" ")[1],
+                    QuestStatus.AVAILABLE);
+            availableQuests.addAll(quests);
+        }
+
+        return availableQuests;
     }
 
     private OffsetDateTime localDateToOffsetDateTime(LocalDate localDate) {
