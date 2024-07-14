@@ -121,8 +121,9 @@ public class QuestServiceImplementation implements QuestService {
     @Override
     public List<Quest> getAllQuestsForCultist(Cultist currentCultist) {
         List<Cultist> cultist = new ArrayList<>();
+        List<QuestStatus> statuses = Arrays.asList(QuestStatus.COMPLETED, QuestStatus.FAILED);
         cultist.add(currentCultist);
-        return questRepository.findQuestsByCultists(cultist);
+        return questRepository.findQuestsByCultists(cultist, statuses);
     }
 
     private void validateRankAndGrade(String rankAndGrade) {

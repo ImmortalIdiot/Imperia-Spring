@@ -14,8 +14,9 @@ import java.util.List;
 public interface QuestRepository extends JpaRepository <Quest, Long> {
     @Query(value = "SELECT q " +
             "FROM Quest q JOIN q.cultists c " +
-            "WHERE c IN :cultists and q.questStatus IN ('Completed', 'Failed')")
-    List<Quest> findQuestsByCultists(@Param("cultists") List<Cultist> cultists);
+            "WHERE c IN :cultists and q.questStatus IN :statuses")
+    List<Quest> findQuestsByCultists(@Param("cultists") List<Cultist> cultists,
+                                     @Param("statuses") List<QuestStatus> statuses);
 
     @Query(value = "SELECT q FROM Quest q WHERE q.questStatus = :status")
     List<Quest> findQuestsByQuestStatus(@Param("status") QuestStatus questStatus);
