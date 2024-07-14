@@ -1,5 +1,6 @@
 package com.immortalidiot.services.impl;
 
+import com.immortalidiot.entities.Cultist;
 import com.immortalidiot.entities.Deal;
 import com.immortalidiot.entities.Quest;
 import com.immortalidiot.entities.enums.QuestType;
@@ -11,6 +12,8 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuestServiceImplementation implements QuestService {
 
@@ -104,6 +107,13 @@ public class QuestServiceImplementation implements QuestService {
         }
 
         return punishment;
+    }
+
+    @Override
+    public List<Quest> getAllQuestsForCultist(Cultist currentCultist) {
+        List<Cultist> cultist = new ArrayList<>();
+        cultist.add(currentCultist);
+        return questRepository.findQuestsByCultists(cultist);
     }
 
     private void validateRankAndGrade(String rankAndGrade) {
