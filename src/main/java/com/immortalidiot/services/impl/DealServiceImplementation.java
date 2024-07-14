@@ -91,6 +91,10 @@ public class DealServiceImplementation implements DealService {
         return null;
     }
 
+    public Deal getLatestCreatedDeal() {
+        return latestCreatedDeal;
+    }
+
     private void validateQuestType(QuestType questType) {
         if (questType == null) throw new IllegalArgumentException("Unknown quest type");
     }
