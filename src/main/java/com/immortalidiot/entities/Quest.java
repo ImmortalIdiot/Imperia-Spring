@@ -139,7 +139,8 @@ public class Quest extends IdEntity {
     }
 
     public void setChance(int chance) {
-        this.chance = chance;
+        if (chance >= 0 && chance <= 100) { this.chance = chance; }
+        else { throw new IllegalArgumentException("Incorrect chance value"); }
     }
 
     @ManyToMany
