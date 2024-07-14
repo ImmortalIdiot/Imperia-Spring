@@ -5,8 +5,10 @@ import com.immortalidiot.entities.Deal;
 import com.immortalidiot.entities.Quest;
 import com.immortalidiot.entities.enums.QuestStatus;
 import com.immortalidiot.entities.enums.QuestType;
+import com.immortalidiot.repositories.CultistRepository;
 import com.immortalidiot.repositories.QuestRepository;
 import com.immortalidiot.services.QuestService;
+import com.immortalidiot.services.dtos.CultistDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.Duration;
@@ -19,6 +21,7 @@ public class QuestServiceImplementation implements QuestService {
 
     private DealServiceImplementation dealServiceImplementation;
     private QuestRepository questRepository;
+    private CultistRepository cultistRepository;
 
     private final Deal LATEST_DEAL = dealServiceImplementation.getLatestCreatedDeal();
 
@@ -31,7 +34,8 @@ public class QuestServiceImplementation implements QuestService {
 
     @Autowired
     public QuestServiceImplementation(DealServiceImplementation dealServiceImplementation,
-                                      QuestRepository questRepository) {
+                                      QuestRepository questRepository,
+                                      CultistRepository cultistRepository) {
         this.dealServiceImplementation = dealServiceImplementation;
         this.questRepository = questRepository;
     }
@@ -140,7 +144,9 @@ public class QuestServiceImplementation implements QuestService {
     }
 
     @Override
-    public List<Quest> getAllQuestsForCultist(Cultist currentCultist) {
+    public List<Quest> getAllQuestsForCultist(CultistDTO cultistDTO) {
+        Cultist currentCultist = cultistRepository.findByNickname(cultistDTO.getNickname());
+
         List<Cultist> cultist = new ArrayList<>();
         List<QuestStatus> statuses = Arrays.asList(QuestStatus.COMPLETED, QuestStatus.FAILED);
         cultist.add(currentCultist);
@@ -208,5 +214,20 @@ public class QuestServiceImplementation implements QuestService {
         }
 
         return priorityType;
+    }
+
+    protected List<Quest> sortQuestsByPriority(List<Quest> quests, QuestType priorityQuestType) {
+        List<Quest> sortedQuests = new ArrayList<>(quests);
+
+        sortedQuests.sort(Comparator.comparing((Quest q) -> q.getQuestType() == priorityQuestType ? 0 : 1)
+                .thenComparing(Quest::getDateFormed));
+
+        return sortedQuests;
+    }
+
+    public List<Quest> getSortedQuestsForCultist(CultistDTO cultist) {
+        List<Quest> completedOrFailedQuests = getAllQuestsForCultist(cultist);
+        QuestType priorityQuestType = getPriorityQuestType(completedOrFailedQuests);
+        return sortQuestsByPriority(completedOrFailedQuests, priorityQuestType);
     }
 }
