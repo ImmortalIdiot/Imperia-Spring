@@ -189,7 +189,7 @@ public class QuestServiceImplementation implements QuestService {
         return typeCountMap;
     }
 
-    protected QuestType getPriorityQuestStatus(List<Quest> availableQuests) {
+    protected QuestType getPriorityQuestType(List<Quest> availableQuests) {
         Map<QuestType, Integer> failedQuests = getQuestTypeCount(availableQuests, QuestStatus.FAILED);
         Map<QuestType, Integer> completedQuests = getQuestTypeCount(availableQuests, QuestStatus.COMPLETED);
 
