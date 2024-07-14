@@ -20,6 +20,8 @@ public class DealServiceImplementation implements DealService {
     private ClientServiceImplementation clientServiceImplementation;
     private ManagerServiceImplementation managerServiceImplementation;
 
+    private Deal latestCreatedDeal;
+
     @Autowired
     public DealServiceImplementation(
             DealRepository dealRepository,
@@ -29,7 +31,6 @@ public class DealServiceImplementation implements DealService {
         this.clientServiceImplementation = clientServiceImplementation;
         this.managerServiceImplementation = managerServiceImplementation;
     }
-
 
     @Override
     @Transactional
@@ -42,8 +43,9 @@ public class DealServiceImplementation implements DealService {
         double amount = calculateCost(clientTerms);
 
         Deal deal = new Deal(manager, client, clientTerms, amount);
+        latestCreatedDeal = deal;
 
-
+        dealRepository.save(deal);
     }
 
     private double calculateCost(String clientTerms) {
