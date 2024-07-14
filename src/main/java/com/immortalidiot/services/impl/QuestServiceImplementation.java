@@ -228,7 +228,8 @@ public class QuestServiceImplementation implements QuestService {
     protected List<Quest> getSortedQuestsForCultist(CultistDTO cultist) {
         List<Quest> completedOrFailedQuests = getAllQuestsForCultist(cultist);
         QuestType priorityQuestType = getPriorityQuestType(completedOrFailedQuests);
-        return sortQuestsByPriority(completedOrFailedQuests, priorityQuestType);
+        return sortQuestsByPriority(getAvailableQuestsForCultist(
+                cultistRepository.findByNickname(cultist.getNickname())), priorityQuestType);
     }
 
     protected Quest getRandomQuest(List<Quest> availableQuest) {
@@ -244,6 +245,11 @@ public class QuestServiceImplementation implements QuestService {
     @Override
     public void updateSelectedQuest(CultistDTO cultistDTO) {
         List<Quest> availableQuests = getSortedQuestsForCultist(cultistDTO);
+
+        if (availableQuests.isEmpty()) {
+            // replace this exception by custom exception
+            throw new IllegalArgumentException("There are no available quests");
+        }
 
         Quest selectedQuest = getRandomQuest(availableQuests);
 
