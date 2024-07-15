@@ -1,6 +1,7 @@
 package com.immortalidiot.repositories.impl;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,14 +16,18 @@ public abstract class BaseRepository<EntityType, EntityPrimaryKeyType> {
     @PersistenceContext
     protected EntityManager entityManager;
 
+    private Class<EntityType> entityTypeClass;
+
     @Transactional
     public void save(EntityType entity) {
         entityManager.persist(entity);
     }
 
     @Transactional
-    public Optional<EntityType> findById(EntityPrimaryKeyType id) {
-        return genericRepository.findById(id);
+    public EntityType findById(EntityPrimaryKeyType id) {
+        Optional<EntityType> optionalEntity = genericRepository.findById(id);
+        return optionalEntity.orElseThrow(() ->
+                new EntityNotFoundException(entityTypeClass.getSimpleName() + " with id " + id + " not found"));
     }
 
     @Transactional
