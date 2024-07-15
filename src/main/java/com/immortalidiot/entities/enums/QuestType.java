@@ -7,8 +7,8 @@ public enum QuestType {
     FORGERY ("Forgery", 3),
     MURDER ("Murder", 4);
 
-    private String questType;
-    private int number;
+    private final String questType;
+    private final int number;
 
     QuestType(String questType, int number) {
         this.questType = questType;
@@ -16,5 +16,9 @@ public enum QuestType {
     }
     public String getQuestType() {
         return questType;
+    }
+
+    public int getNumber() {
+        return number;
     }
 }
