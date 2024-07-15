@@ -3,10 +3,9 @@ package com.immortalidiot.services.impl;
 import com.immortalidiot.entities.Client;
 import com.immortalidiot.repositories.ClientRepository;
 import com.immortalidiot.services.ClientService;
+import com.immortalidiot.services.dtos.ClientDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Set;
 
 @Service
 public class ClientServiceImplementation implements ClientService {
@@ -14,8 +13,8 @@ public class ClientServiceImplementation implements ClientService {
 
     @Override
     @Transactional
-    public void registerClient(Client client) {
-        Set<Client> existingClients = clientRepository.findAllByContact(client.getContact());
-        if (existingClients.isEmpty()) { clientRepository.save(client); }
+    public void registerClient(ClientDTO clientDTO) {
+        Client client = clientRepository.findByContact(clientDTO.getContact()).orElse(null);
+        if (client != null) { clientRepository.save(client); }
     }
 }
