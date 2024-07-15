@@ -18,13 +18,19 @@ import java.time.LocalDate;
 
 @Service
 public class DealServiceImplementation implements DealService {
-    private DealRepositoryImpl dealRepository;
-    private ClientServiceImplementation clientServiceImplementation;
-    private ManagerRepositoryImpl managerRepository;
+    private final DealRepositoryImpl dealRepository;
+    private final ClientServiceImplementation clientServiceImplementation;
+    private final ManagerRepositoryImpl managerRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public DealServiceImplementation(ModelMapper modelMapper) {
+    public DealServiceImplementation(DealRepositoryImpl dealRepository,
+                                     ClientServiceImplementation clientServiceImplementation,
+                                     ManagerRepositoryImpl managerRepository,
+                                     ModelMapper modelMapper) {
+        this.dealRepository = dealRepository;
+        this.clientServiceImplementation = clientServiceImplementation;
+        this.managerRepository = managerRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -62,7 +68,7 @@ public class DealServiceImplementation implements DealService {
             case MURDER -> cost += 400000;
         }
 
-        LocalDate registrationDate =LocalDate.parse(termsParts[1]);
+        LocalDate registrationDate = LocalDate.parse(termsParts[1]);
         LocalDate targetDate = LocalDate.parse(termsParts[2]);
         validateDate(registrationDate, targetDate);
 
@@ -74,7 +80,9 @@ public class DealServiceImplementation implements DealService {
             cost *= 1.6;
         } else if (urgency <= 21) {
             cost *= 1.4;
-        } else { cost *= 1.2; }
+        } else {
+            cost *= 1.2;
+        }
 
         return cost;
     }

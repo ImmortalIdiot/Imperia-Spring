@@ -22,13 +22,19 @@ import java.util.*;
 
 public class QuestServiceImplementation implements QuestService {
 
-    private DealRepositoryImpl dealRepository;
-    private QuestRepositoryImpl questRepository;
-    private CultistRepository cultistRepository;
+    private final DealRepositoryImpl dealRepository;
+    private final QuestRepositoryImpl questRepository;
+    private final CultistRepository cultistRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public QuestServiceImplementation(ModelMapper modelMapper) {
+    public QuestServiceImplementation(DealRepositoryImpl dealRepository,
+                                      QuestRepositoryImpl questRepository,
+                                      CultistRepository cultistRepository,
+                                      ModelMapper modelMapper) {
+        this.dealRepository = dealRepository;
+        this.questRepository = questRepository;
+        this.cultistRepository = cultistRepository;
         this.modelMapper = modelMapper;
 
         modelMapper.createTypeMap(CultistDTO.class, Cultist.class)
