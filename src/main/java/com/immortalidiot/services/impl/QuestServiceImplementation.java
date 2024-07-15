@@ -23,7 +23,7 @@ public class QuestServiceImplementation implements QuestService {
     private DealServiceImplementation dealServiceImplementation;
     private QuestRepository questRepository;
     private CultistRepository cultistRepository;
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     private final Deal LATEST_DEAL = dealServiceImplementation.getLatestCreatedDeal();
 

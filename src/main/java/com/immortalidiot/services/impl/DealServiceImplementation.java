@@ -20,7 +20,7 @@ public class DealServiceImplementation implements DealService {
     private DealRepository dealRepository;
     private ClientServiceImplementation clientServiceImplementation;
     private ManagerServiceImplementation managerServiceImplementation;
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     private Deal latestCreatedDeal;
 
