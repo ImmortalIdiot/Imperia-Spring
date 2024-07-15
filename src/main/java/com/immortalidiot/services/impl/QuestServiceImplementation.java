@@ -45,7 +45,7 @@ public class QuestServiceImplementation implements QuestService {
         String clientTerms = LATEST_DEAL.getClientTerms();
         String[] termParts = clientTerms.split("; ");
         String type = termParts[0];
-        QuestType questType = dealServiceImplementation.defineQuestType(type);
+        QuestType questType = QuestType.getQuestTypeByName(type);
 
         LocalDate registrationDate = LocalDate.parse(termParts[1]);
         LocalDate targetDate = LocalDate.parse(termParts[2]);

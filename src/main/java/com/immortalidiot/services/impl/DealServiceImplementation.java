@@ -54,7 +54,7 @@ public class DealServiceImplementation implements DealService {
         //             20.04.2020 (description: targetDate); other details"
         String[] termsParts = clientTerms.split("; ");
 
-        QuestType questType = defineQuestType(termsParts[0]);
+        QuestType questType = QuestType.getQuestTypeByName(termsParts[0]);
         validateQuestType(questType);
 
         double cost = 0;
@@ -82,15 +82,6 @@ public class DealServiceImplementation implements DealService {
         } else { cost *= 1.2; }
 
         return cost;
-    }
-
-    protected QuestType defineQuestType(String questType) {
-        for (QuestType type : QuestType.values()) {
-            if (type.getQuestType().equalsIgnoreCase(questType)) {
-                return type;
-            }
-        }
-        return null;
     }
 
     public Deal getLatestCreatedDeal() {
