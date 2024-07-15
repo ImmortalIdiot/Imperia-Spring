@@ -5,6 +5,7 @@ import com.immortalidiot.entities.Deal;
 import com.immortalidiot.entities.Manager;
 import com.immortalidiot.entities.enums.QuestType;
 import com.immortalidiot.repositories.impl.DealRepositoryImpl;
+import com.immortalidiot.repositories.impl.ManagerRepositoryImpl;
 import com.immortalidiot.services.DealService;
 import com.immortalidiot.services.dtos.ClientDTO;
 import org.modelmapper.ModelMapper;
@@ -19,7 +20,7 @@ import java.time.LocalDate;
 public class DealServiceImplementation implements DealService {
     private DealRepositoryImpl dealRepository;
     private ClientServiceImplementation clientServiceImplementation;
-    private ManagerServiceImplementation managerServiceImplementation;
+    private ManagerRepositoryImpl managerRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
@@ -30,7 +31,7 @@ public class DealServiceImplementation implements DealService {
     @Override
     @Transactional
     public void createDeal(ClientDTO clientDTO, String clientTerms) {
-        Manager manager = managerServiceImplementation.getRandomManager(managerServiceImplementation.getAllManagers());
+        Manager manager = managerRepository.getRandomManager(managerRepository.getAllManagers());
 
         Client client = mapClientDTOToEntity(clientDTO);
         clientServiceImplementation.registerClient(clientDTO);
