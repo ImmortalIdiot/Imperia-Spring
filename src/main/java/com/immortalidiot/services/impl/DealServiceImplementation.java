@@ -7,6 +7,7 @@ import com.immortalidiot.entities.enums.QuestType;
 import com.immortalidiot.repositories.DealRepository;
 import com.immortalidiot.services.DealService;
 import com.immortalidiot.services.dtos.ClientDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,7 @@ public class DealServiceImplementation implements DealService {
     private DealRepository dealRepository;
     private ClientServiceImplementation clientServiceImplementation;
     private ManagerServiceImplementation managerServiceImplementation;
+    private ModelMapper modelMapper;
 
     private Deal latestCreatedDeal;
 
@@ -26,10 +28,12 @@ public class DealServiceImplementation implements DealService {
     public DealServiceImplementation(
             DealRepository dealRepository,
             ClientServiceImplementation clientServiceImplementation,
-            ManagerServiceImplementation managerServiceImplementation) {
+            ManagerServiceImplementation managerServiceImplementation,
+            ModelMapper modelMapper) {
         this.dealRepository = dealRepository;
         this.clientServiceImplementation = clientServiceImplementation;
         this.managerServiceImplementation = managerServiceImplementation;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -37,7 +41,7 @@ public class DealServiceImplementation implements DealService {
     public void createDeal(ClientDTO clientDTO, String clientTerms) {
         Manager manager = managerServiceImplementation.getRandomManager(managerServiceImplementation.getAllManagers());
 
-        Client client = new Client(clientDTO.getContact(), clientDTO.getName());
+        Client client = modelMapper.map(clientDTO, Client.class);
         clientServiceImplementation.registerClient(clientDTO);
 
         double amount = calculateCost(clientTerms);
