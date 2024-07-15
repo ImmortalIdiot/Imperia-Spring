@@ -153,9 +153,9 @@ public class QuestServiceImplementation implements QuestService {
         return questRepository.findQuestsByCultists(cultist, statuses);
     }
 
-    private List<String> getLowerOrEqualGradesAndRanks(Cultist cultist) {
+    private List<String> getLowerOrEqualGradesAndRanks(CultistDTO cultistDTO) {
         List<String> lowerOrEqualGradeAndRanks = new ArrayList<>();
-        String cultistGradeAndRank = cultist.getGrade() + " " + cultist.getRank();
+        String cultistGradeAndRank = cultistDTO.getGrade() + " " + cultistDTO.getRank();
 
         for (String gradeAndRank : allGradesAndRanks) {
             lowerOrEqualGradeAndRanks.add(gradeAndRank);
@@ -166,8 +166,8 @@ public class QuestServiceImplementation implements QuestService {
         return lowerOrEqualGradeAndRanks;
     }
 
-    public List<Quest> getAvailableQuestsForCultist(Cultist cultist) {
-        List<String> lowerOrEqualGradeRanks = getLowerOrEqualGradesAndRanks(cultist);
+    public List<Quest> getAvailableQuestsForCultist(CultistDTO cultistDTO) {
+        List<String> lowerOrEqualGradeRanks = getLowerOrEqualGradesAndRanks(cultistDTO);
 
         List<Quest> availableQuests = new ArrayList<>();
 
@@ -225,11 +225,10 @@ public class QuestServiceImplementation implements QuestService {
         return sortedQuests;
     }
 
-    protected List<Quest> getSortedQuestsForCultist(CultistDTO cultist) {
-        List<Quest> completedOrFailedQuests = getAllQuestsForCultist(cultist);
+    protected List<Quest> getSortedQuestsForCultist(CultistDTO cultistDTO) {
+        List<Quest> completedOrFailedQuests = getAllQuestsForCultist(cultistDTO);
         QuestType priorityQuestType = getPriorityQuestType(completedOrFailedQuests);
-        return sortQuestsByPriority(getAvailableQuestsForCultist(
-                cultistRepository.findByNickname(cultist.getNickname())), priorityQuestType);
+        return sortQuestsByPriority(getAvailableQuestsForCultist(cultistDTO), priorityQuestType);
     }
 
     protected Quest getRandomQuest(List<Quest> availableQuest) {
