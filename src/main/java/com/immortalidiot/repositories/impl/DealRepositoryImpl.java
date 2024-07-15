@@ -5,7 +5,9 @@ import com.immortalidiot.repositories.DealRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.NoResultException;
 import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class DealRepositoryImpl extends BaseRepository<Deal, Long> implements DealRepository {
     @Override
     @Transactional

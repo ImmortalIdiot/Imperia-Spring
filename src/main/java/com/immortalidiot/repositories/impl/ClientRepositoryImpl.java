@@ -5,7 +5,9 @@ import com.immortalidiot.repositories.ClientRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ClientRepositoryImpl extends BaseRepository<Client, String> implements ClientRepository {
     @Override
     public Client findByContact(String contact) {

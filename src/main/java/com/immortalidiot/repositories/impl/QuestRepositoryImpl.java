@@ -5,9 +5,11 @@ import com.immortalidiot.entities.Quest;
 import com.immortalidiot.entities.enums.QuestStatus;
 import com.immortalidiot.repositories.QuestRepository;
 import jakarta.persistence.TypedQuery;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class QuestRepositoryImpl extends BaseRepository<Quest, Long> implements QuestRepository {
     @Override
     public List<Quest> findQuestsByCultists(List<Cultist> cultists, List<QuestStatus> statuses) {
