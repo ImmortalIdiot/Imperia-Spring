@@ -25,8 +25,6 @@ public class QuestServiceImplementation implements QuestService {
     private CultistRepository cultistRepository;
     private final ModelMapper modelMapper;
 
-    private final Deal LATEST_DEAL = dealServiceImplementation.getLatestCreatedDeal();
-
     private List<String> allGradesAndRanks = Arrays.asList(
             "Recruit", "Private II", "Private I",
             "Apprentice III", "Apprentice II", "Apprentice I",
@@ -51,9 +49,12 @@ public class QuestServiceImplementation implements QuestService {
 
     @Override
     public void createQuest() {
-        String clientTerms = LATEST_DEAL.getClientTerms();
+        Deal latestDeal = dealServiceImplementation.getLatestDeal();
+
+        String clientTerms = latestDeal.getClientTerms();
         String[] termParts = clientTerms.split("; ");
         String type = termParts[0];
+
         QuestType questType = QuestType.getQuestTypeByName(type);
 
         LocalDate registrationDate = LocalDate.parse(termParts[1]);
@@ -74,7 +75,7 @@ public class QuestServiceImplementation implements QuestService {
 
         Quest quest = new Quest(questType, minGrade, minRank, numCultists,
                 localDateToOffsetDateTime(registrationDate), localDateToOffsetDateTime(targetDate),
-                reward, punishment, LATEST_DEAL);
+                reward, punishment, latestDeal);
 
         questRepository.save(quest);
     }

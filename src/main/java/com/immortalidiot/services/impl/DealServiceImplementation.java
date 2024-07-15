@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Service
 public class DealServiceImplementation implements DealService {
@@ -21,8 +22,6 @@ public class DealServiceImplementation implements DealService {
     private ClientServiceImplementation clientServiceImplementation;
     private ManagerServiceImplementation managerServiceImplementation;
     private final ModelMapper modelMapper;
-
-    private Deal latestCreatedDeal;
 
     @Autowired
     public DealServiceImplementation(ModelMapper modelMapper) {
@@ -40,7 +39,6 @@ public class DealServiceImplementation implements DealService {
         double amount = calculateCost(clientTerms);
 
         Deal deal = new Deal(manager, client, clientTerms, amount);
-        latestCreatedDeal = deal;
 
         dealRepository.save(deal);
     }
@@ -81,9 +79,7 @@ public class DealServiceImplementation implements DealService {
         return cost;
     }
 
-    public Deal getLatestCreatedDeal() {
-        return latestCreatedDeal;
-    }
+    public Deal getLatestDeal() { return dealRepository.findLatestDeal().orElse(null); }
 
     private void validateQuestType(QuestType questType) {
         if (questType == null) throw new IllegalArgumentException("Unknown quest type");
