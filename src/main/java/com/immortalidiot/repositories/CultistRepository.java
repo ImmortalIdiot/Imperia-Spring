@@ -8,6 +8,6 @@ import java.util.List;
 
 @Component
 public interface CultistRepository {
-    Cultist findByNickname(String nickname);
+    Cultist findById(String nickname);
     List<Quest> findQuestsByCultistId(String id);
 }
