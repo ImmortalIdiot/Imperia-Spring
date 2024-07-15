@@ -5,8 +5,10 @@ import com.immortalidiot.repositories.CultistRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+@Repository
 public class CultistRepositoryImpl extends BaseRepository<Cultist, String> implements CultistRepository {
     @Override
     @Transactional
