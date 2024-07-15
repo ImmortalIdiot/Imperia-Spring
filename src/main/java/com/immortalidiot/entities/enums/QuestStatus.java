@@ -19,7 +19,7 @@ public enum QuestStatus {
 
     public int getNumber() { return number; }
 
-    public static QuestStatus fromNumber(int number) {
+    public static QuestStatus getQuestStatusByNumber(int number) {
         for (QuestStatus status : QuestStatus.values()) {
             if (status.getNumber() == number) {
                 return status;
