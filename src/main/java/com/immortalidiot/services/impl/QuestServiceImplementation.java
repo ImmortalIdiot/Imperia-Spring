@@ -7,8 +7,8 @@ import com.immortalidiot.entities.enums.GradesAndRanks;
 import com.immortalidiot.entities.enums.QuestStatus;
 import com.immortalidiot.entities.enums.QuestType;
 import com.immortalidiot.repositories.CultistRepository;
-import com.immortalidiot.repositories.impl.DealRepositoryImpl;
-import com.immortalidiot.repositories.impl.QuestRepositoryImpl;
+import com.immortalidiot.repositories.DealRepository;
+import com.immortalidiot.repositories.QuestRepository;
 import com.immortalidiot.services.QuestService;
 import com.immortalidiot.services.dtos.CultistDTO;
 import org.modelmapper.ModelMapper;
@@ -22,19 +22,16 @@ import java.util.*;
 
 public class QuestServiceImplementation implements QuestService {
 
-    private final DealRepositoryImpl dealRepository;
-    private final QuestRepositoryImpl questRepository;
-    private final CultistRepository cultistRepository;
+    private final DealRepository dealRepository;
+    private final QuestRepository questRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public QuestServiceImplementation(DealRepositoryImpl dealRepository,
-                                      QuestRepositoryImpl questRepository,
-                                      CultistRepository cultistRepository,
+    public QuestServiceImplementation(DealRepository dealRepository,
+                                      QuestRepository questRepository,
                                       ModelMapper modelMapper) {
         this.dealRepository = dealRepository;
         this.questRepository = questRepository;
-        this.cultistRepository = cultistRepository;
         this.modelMapper = modelMapper;
 
         modelMapper.createTypeMap(CultistDTO.class, Cultist.class)

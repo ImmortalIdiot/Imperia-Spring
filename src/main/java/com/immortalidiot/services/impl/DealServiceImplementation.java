@@ -4,8 +4,11 @@ import com.immortalidiot.entities.Client;
 import com.immortalidiot.entities.Deal;
 import com.immortalidiot.entities.Manager;
 import com.immortalidiot.entities.enums.QuestType;
+import com.immortalidiot.repositories.DealRepository;
+import com.immortalidiot.repositories.ManagerRepository;
 import com.immortalidiot.repositories.impl.DealRepositoryImpl;
 import com.immortalidiot.repositories.impl.ManagerRepositoryImpl;
+import com.immortalidiot.services.ClientService;
 import com.immortalidiot.services.DealService;
 import com.immortalidiot.services.dtos.ClientDTO;
 import org.modelmapper.ModelMapper;
@@ -18,18 +21,18 @@ import java.time.LocalDate;
 
 @Service
 public class DealServiceImplementation implements DealService {
-    private final DealRepositoryImpl dealRepository;
-    private final ClientServiceImplementation clientServiceImplementation;
-    private final ManagerRepositoryImpl managerRepository;
+    private final DealRepository dealRepository;
+    private final ClientService clientService;
+    private final ManagerRepository managerRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public DealServiceImplementation(DealRepositoryImpl dealRepository,
-                                     ClientServiceImplementation clientServiceImplementation,
-                                     ManagerRepositoryImpl managerRepository,
+    public DealServiceImplementation(DealRepository dealRepository,
+                                     ClientService clientService,
+                                     ManagerRepository managerRepository,
                                      ModelMapper modelMapper) {
         this.dealRepository = dealRepository;
-        this.clientServiceImplementation = clientServiceImplementation;
+        this.clientService = clientService;
         this.managerRepository = managerRepository;
         this.modelMapper = modelMapper;
     }
@@ -40,7 +43,7 @@ public class DealServiceImplementation implements DealService {
         Manager manager = managerRepository.getRandomManager(managerRepository.getAllManagers());
 
         Client client = mapClientDTOToEntity(clientDTO);
-        clientServiceImplementation.registerClient(clientDTO);
+        clientService.registerClient(clientDTO);
 
         double amount = calculateCost(clientTerms);
 

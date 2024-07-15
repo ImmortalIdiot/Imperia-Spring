@@ -2,7 +2,6 @@ package com.immortalidiot.services.impl;
 
 import com.immortalidiot.entities.Client;
 import com.immortalidiot.repositories.ClientRepository;
-import com.immortalidiot.repositories.impl.ClientRepositoryImpl;
 import com.immortalidiot.services.ClientService;
 import com.immortalidiot.services.dtos.ClientDTO;
 import org.modelmapper.ModelMapper;
@@ -12,11 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ClientServiceImplementation implements ClientService {
-    private final ClientRepositoryImpl clientRepository;
+    private final ClientRepository clientRepository;
     private final ModelMapper modelMapper;
 
     @Autowired
-    public ClientServiceImplementation(ClientRepositoryImpl clientRepository, ModelMapper modelMapper) {
+    public ClientServiceImplementation(ClientRepository clientRepository, ModelMapper modelMapper) {
         this.clientRepository = clientRepository;
         this.modelMapper = modelMapper;
     }
