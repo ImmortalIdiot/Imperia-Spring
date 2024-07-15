@@ -50,6 +50,7 @@ public class QuestServiceImplementation implements QuestService {
     @Override
     public void createQuest() {
         Deal latestDeal = dealServiceImplementation.getLatestDeal();
+        validateDeal(latestDeal);
 
         String clientTerms = latestDeal.getClientTerms();
         String[] termParts = clientTerms.split("; ");
@@ -155,6 +156,10 @@ public class QuestServiceImplementation implements QuestService {
         if (punishment == null || punishment.isBlank()) {
             throw new IllegalArgumentException("Unknown punishment");
         }
+    }
+
+    private void validateDeal(Deal deal) {
+        if (deal == null) { throw new IllegalArgumentException("Deal does not exist"); } //TODO: replace with custom exception
     }
 
     @Override
