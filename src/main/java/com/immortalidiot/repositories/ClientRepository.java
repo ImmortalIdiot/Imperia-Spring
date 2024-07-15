@@ -6,4 +6,6 @@ import org.springframework.stereotype.Component;
 @Component
 public interface ClientRepository {
     Client findByContact(String contact);
+    void save(Client client);
+
 }
