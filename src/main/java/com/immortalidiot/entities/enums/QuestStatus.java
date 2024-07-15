@@ -7,11 +7,15 @@ public enum QuestStatus {
     COMPLETED ("Completed", 3),
     FAILED ("Failed", 4);
 
-    private String statusName;
-    private int number;
+    private final String statusName;
+    private final int number;
 
     QuestStatus(String statusName, int number) {
         this.statusName = statusName;
         this.number = number;
     }
+
+    public String getStatusName() { return statusName; }
+
+    public int getNumber() { return number; }
 }
