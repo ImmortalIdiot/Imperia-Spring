@@ -30,4 +30,13 @@ public enum QuestType {
         }
         throw new IllegalArgumentException("Invalid type number: " + number);
     }
+
+    public static QuestType getQuestTypeByName(String name) {
+        for (QuestType type : QuestType.values()) {
+            if (type.getQuestType().equalsIgnoreCase(name)) {
+                return type;
+            }
+        }
+        throw new IllegalArgumentException("Invalid type name: " + name);
+    }
 }
