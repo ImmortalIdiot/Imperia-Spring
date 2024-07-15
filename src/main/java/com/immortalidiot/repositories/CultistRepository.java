@@ -10,4 +10,5 @@ import java.util.List;
 public interface CultistRepository {
     Cultist findById(String nickname);
     List<Quest> findQuestsByCultistId(String id);
+    void save(Cultist cultist);
 }
