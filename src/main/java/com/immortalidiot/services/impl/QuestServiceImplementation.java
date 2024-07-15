@@ -9,6 +9,7 @@ import com.immortalidiot.repositories.CultistRepository;
 import com.immortalidiot.repositories.QuestRepository;
 import com.immortalidiot.services.QuestService;
 import com.immortalidiot.services.dtos.CultistDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.Duration;
@@ -22,6 +23,7 @@ public class QuestServiceImplementation implements QuestService {
     private DealServiceImplementation dealServiceImplementation;
     private QuestRepository questRepository;
     private CultistRepository cultistRepository;
+    private ModelMapper modelMapper;
 
     private final Deal LATEST_DEAL = dealServiceImplementation.getLatestCreatedDeal();
 
@@ -35,9 +37,20 @@ public class QuestServiceImplementation implements QuestService {
     @Autowired
     public QuestServiceImplementation(DealServiceImplementation dealServiceImplementation,
                                       QuestRepository questRepository,
-                                      CultistRepository cultistRepository) {
+                                      CultistRepository cultistRepository,
+                                      ModelMapper modelMapper) {
         this.dealServiceImplementation = dealServiceImplementation;
         this.questRepository = questRepository;
+        this.modelMapper = modelMapper;
+
+        modelMapper.createTypeMap(CultistDTO.class, Cultist.class)
+                .addMappings(mapper -> {
+                    mapper.skip(Cultist::setFirstName);
+                    mapper.skip(Cultist::setLastName);
+                    mapper.skip(Cultist::setThanksGiving);
+                    mapper.skip(Cultist::setQuests);
+                    mapper.skip(Cultist::setCity);
+                });
     }
 
     @Override
@@ -253,7 +266,7 @@ public class QuestServiceImplementation implements QuestService {
         Quest selectedQuest = getRandomQuest(availableQuests);
 
         addCultistToQuest(cultistDTO, selectedQuest);
-        int numParticipants =  selectedQuest.getCultists().size() + 1;
+        int numParticipants = selectedQuest.getCultists().size() + 1;
 
         int numCultists = selectedQuest.getNumCultists();
         int chance;
