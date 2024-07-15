@@ -7,7 +7,8 @@ import com.immortalidiot.entities.enums.GradesAndRanks;
 import com.immortalidiot.entities.enums.QuestStatus;
 import com.immortalidiot.entities.enums.QuestType;
 import com.immortalidiot.repositories.CultistRepository;
-import com.immortalidiot.repositories.QuestRepository;
+import com.immortalidiot.repositories.impl.DealRepositoryImpl;
+import com.immortalidiot.repositories.impl.QuestRepositoryImpl;
 import com.immortalidiot.services.QuestService;
 import com.immortalidiot.services.dtos.CultistDTO;
 import org.modelmapper.ModelMapper;
@@ -21,8 +22,8 @@ import java.util.*;
 
 public class QuestServiceImplementation implements QuestService {
 
-    private DealServiceImplementation dealServiceImplementation;
-    private QuestRepository questRepository;
+    private DealRepositoryImpl dealRepository;
+    private QuestRepositoryImpl questRepository;
     private CultistRepository cultistRepository;
     private final ModelMapper modelMapper;
 
@@ -43,7 +44,7 @@ public class QuestServiceImplementation implements QuestService {
 
     @Override
     public void createQuest() {
-        Deal latestDeal = dealServiceImplementation.getLatestDeal();
+        Deal latestDeal = dealRepository.findLatestDeal();
         validateDeal(latestDeal);
 
         String clientTerms = latestDeal.getClientTerms();

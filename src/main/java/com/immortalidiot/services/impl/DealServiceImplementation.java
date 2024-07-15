@@ -4,7 +4,7 @@ import com.immortalidiot.entities.Client;
 import com.immortalidiot.entities.Deal;
 import com.immortalidiot.entities.Manager;
 import com.immortalidiot.entities.enums.QuestType;
-import com.immortalidiot.repositories.DealRepository;
+import com.immortalidiot.repositories.impl.DealRepositoryImpl;
 import com.immortalidiot.services.DealService;
 import com.immortalidiot.services.dtos.ClientDTO;
 import org.modelmapper.ModelMapper;
@@ -14,11 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
 import java.time.LocalDate;
-import java.util.Optional;
 
 @Service
 public class DealServiceImplementation implements DealService {
-    private DealRepository dealRepository;
+    private DealRepositoryImpl dealRepository;
     private ClientServiceImplementation clientServiceImplementation;
     private ManagerServiceImplementation managerServiceImplementation;
     private final ModelMapper modelMapper;
@@ -78,8 +77,6 @@ public class DealServiceImplementation implements DealService {
 
         return cost;
     }
-
-    public Deal getLatestDeal() { return dealRepository.findLatestDeal().orElse(null); }
 
     private void validateQuestType(QuestType questType) {
         if (questType == null) throw new IllegalArgumentException("Unknown quest type");
