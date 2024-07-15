@@ -21,4 +21,13 @@ public enum QuestType {
     public int getNumber() {
         return number;
     }
+
+    public static QuestType getQuestTypeByNumber(int number) {
+        for (QuestType type : QuestType.values()) {
+            if (type.getNumber() == number) {
+                return type;
+            }
+        }
+        throw new IllegalArgumentException("Invalid type number: " + number);
+    }
 }
