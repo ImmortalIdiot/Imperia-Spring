@@ -33,7 +33,7 @@ public class DealServiceImplementation implements DealService {
     public void createDeal(ClientDTO clientDTO, String clientTerms) {
         Manager manager = managerServiceImplementation.getRandomManager(managerServiceImplementation.getAllManagers());
 
-        Client client = modelMapper.map(clientDTO, Client.class);
+        Client client = mapClientDTOToEntity(clientDTO);
         clientServiceImplementation.registerClient(clientDTO);
 
         double amount = calculateCost(clientTerms);
@@ -88,5 +88,9 @@ public class DealServiceImplementation implements DealService {
     private void validateDate(LocalDate registrationDate, LocalDate targetDate) {
         if (registrationDate.isAfter(targetDate)) throw new IllegalArgumentException(
                 "Incorrect registration date or target date");
+    }
+
+    private Client mapClientDTOToEntity(ClientDTO clientDTO) {
+        return modelMapper.map(clientDTO, Client.class);
     }
 }
