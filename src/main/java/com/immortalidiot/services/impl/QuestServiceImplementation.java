@@ -3,6 +3,7 @@ package com.immortalidiot.services.impl;
 import com.immortalidiot.entities.Cultist;
 import com.immortalidiot.entities.Deal;
 import com.immortalidiot.entities.Quest;
+import com.immortalidiot.entities.enums.GradesAndRanks;
 import com.immortalidiot.entities.enums.QuestStatus;
 import com.immortalidiot.entities.enums.QuestType;
 import com.immortalidiot.repositories.CultistRepository;
@@ -24,13 +25,6 @@ public class QuestServiceImplementation implements QuestService {
     private QuestRepository questRepository;
     private CultistRepository cultistRepository;
     private final ModelMapper modelMapper;
-
-    private List<String> allGradesAndRanks = Arrays.asList(
-            "Recruit", "Private II", "Private I",
-            "Apprentice III", "Apprentice II", "Apprentice I",
-            "Master III", "Master II", "Master I",
-            "Magister III", "Magister II", "Magister I"
-    );
 
     @Autowired
     public QuestServiceImplementation(ModelMapper modelMapper) {
@@ -176,7 +170,7 @@ public class QuestServiceImplementation implements QuestService {
         List<String> lowerOrEqualGradeAndRanks = new ArrayList<>();
         String cultistGradeAndRank = cultistDTO.getGrade() + " " + cultistDTO.getRank();
 
-        for (String gradeAndRank : allGradesAndRanks) {
+        for (String gradeAndRank : GradesAndRanks.getAllGradesAndRanks()) {
             lowerOrEqualGradeAndRanks.add(gradeAndRank);
 
             if (gradeAndRank.equalsIgnoreCase(cultistGradeAndRank)) {
