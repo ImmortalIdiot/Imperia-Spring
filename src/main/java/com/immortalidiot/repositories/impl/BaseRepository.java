@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Repository
-public class BaseRepository<EntityType, EntityPrimaryKeyType> {
-    protected JpaRepository<EntityType, EntityPrimaryKeyType> genericRepository;
+public abstract class BaseRepository<EntityType, EntityPrimaryKeyType> {
+    private JpaRepository<EntityType, EntityPrimaryKeyType> genericRepository;
 
     @PersistenceContext
     protected EntityManager entityManager;
@@ -29,4 +29,5 @@ public class BaseRepository<EntityType, EntityPrimaryKeyType> {
     public EntityType update(EntityType entity) {
         return entityManager.merge(entity);
     }
+
 }
