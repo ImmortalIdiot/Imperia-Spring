@@ -14,4 +14,5 @@ public interface QuestRepository {
     List<Quest> findQuestsByQuestStatus(QuestStatus questStatus);
 
     List<Quest> findByMinGradeAndMinRankAndQuestStatus(String minGrade, String minRank, QuestStatus questStatus);
+    void save(Quest quest);
 }

@@ -10,4 +10,5 @@ import java.util.List;
 @Component
 public interface ManagerRepository {
     List<Manager> getAllManagers();
+    Manager getRandomManager(List<Manager> managers);
 }
