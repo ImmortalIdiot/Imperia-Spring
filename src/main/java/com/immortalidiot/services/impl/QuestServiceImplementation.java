@@ -158,7 +158,7 @@ public class QuestServiceImplementation implements QuestService {
 
     @Override
     public List<Quest> getAllQuestsForCultist(CultistDTO cultistDTO) {
-        Cultist currentCultist = cultistRepository.findByNickname(cultistDTO.getNickname());
+        Cultist currentCultist = mapCultistDTOToEntity(cultistDTO);
 
         List<Cultist> cultist = new ArrayList<>();
         List<QuestStatus> statuses = Arrays.asList(QuestStatus.COMPLETED, QuestStatus.FAILED);
@@ -250,7 +250,7 @@ public class QuestServiceImplementation implements QuestService {
     }
 
     private void addCultistToQuest(CultistDTO cultistDTO, Quest quest) {
-        Cultist cultist = cultistRepository.findByNickname(cultistDTO.getNickname());
+        Cultist cultist = mapCultistDTOToEntity(cultistDTO);
         quest.getCultists().add(cultist);
     }
 
@@ -284,5 +284,9 @@ public class QuestServiceImplementation implements QuestService {
         if (chance >= 80 && numParticipants == numCultists) {
             selectedQuest.setQuestStatus(QuestStatus.ONGOING);
         }
+    }
+
+    private Cultist mapCultistDTOToEntity(CultistDTO cultistDTO) {
+        return modelMapper.map(cultistDTO, Cultist.class);
     }
 }
