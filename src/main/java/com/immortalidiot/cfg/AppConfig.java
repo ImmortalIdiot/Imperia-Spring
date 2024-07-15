@@ -3,9 +3,11 @@ package com.immortalidiot.cfg;
 import com.immortalidiot.repositories.*;
 import com.immortalidiot.repositories.impl.*;
 import com.immortalidiot.services.ClientService;
+import com.immortalidiot.services.CultistService;
 import com.immortalidiot.services.DealService;
 import com.immortalidiot.services.QuestService;
 import com.immortalidiot.services.impl.ClientServiceImplementation;
+import com.immortalidiot.services.impl.CultistServiceImpl;
 import com.immortalidiot.services.impl.DealServiceImplementation;
 import com.immortalidiot.services.impl.QuestServiceImplementation;
 import org.modelmapper.ModelMapper;
@@ -57,5 +59,10 @@ public class AppConfig {
     @Bean
     public QuestService questService() {
         return new QuestServiceImplementation(dealRepository(), questRepository(), modelMapper());
+    }
+
+    @Bean
+    CultistService cultistService() {
+        return new CultistServiceImpl(cultistRepository(), modelMapper());
     }
 }
