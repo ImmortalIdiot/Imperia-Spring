@@ -254,7 +254,7 @@ public class QuestServiceImplementation implements QuestService {
         Quest selectedQuest = getRandomQuest(availableQuests);
 
         addCultistToQuest(cultistDTO, selectedQuest);
-        selectedQuest.setChance(selectedQuest.getChance() + 1);
+        int numParticipants =  selectedQuest.getCultists().size() + 1;
 
         int numCultists = selectedQuest.getNumCultists();
         int chance;
@@ -269,7 +269,7 @@ public class QuestServiceImplementation implements QuestService {
 
         selectedQuest.setChance(chance);
 
-        if (chance >= 80 && numCultists == selectedQuest.getNumCultists()) {
+        if (chance >= 80 && numParticipants == numCultists) {
             selectedQuest.setQuestStatus(QuestStatus.ONGOING);
         }
     }
