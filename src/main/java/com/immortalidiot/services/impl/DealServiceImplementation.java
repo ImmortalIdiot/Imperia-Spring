@@ -38,7 +38,7 @@ public class DealServiceImplementation implements DealService {
         Manager manager = managerServiceImplementation.getRandomManager(managerServiceImplementation.getAllManagers());
 
         Client client = new Client(clientDTO.getContact(), clientDTO.getName());
-        clientServiceImplementation.registerClient(client);
+        clientServiceImplementation.registerClient(clientDTO);
 
         double amount = calculateCost(clientTerms);
 
