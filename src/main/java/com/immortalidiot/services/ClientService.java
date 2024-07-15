@@ -1,7 +1,7 @@
 package com.immortalidiot.services;
 
-import com.immortalidiot.entities.Client;
+import com.immortalidiot.services.dtos.ClientDTO;
 
 public interface ClientService {
-    void registerClient(Client client);
+    void registerClient(ClientDTO clientDTO);
 }
