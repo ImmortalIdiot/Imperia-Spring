@@ -35,12 +35,7 @@ public class QuestServiceImplementation implements QuestService {
     );
 
     @Autowired
-    public QuestServiceImplementation(DealServiceImplementation dealServiceImplementation,
-                                      QuestRepository questRepository,
-                                      CultistRepository cultistRepository,
-                                      ModelMapper modelMapper) {
-        this.dealServiceImplementation = dealServiceImplementation;
-        this.questRepository = questRepository;
+    public QuestServiceImplementation(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
 
         modelMapper.createTypeMap(CultistDTO.class, Cultist.class)
@@ -50,7 +45,8 @@ public class QuestServiceImplementation implements QuestService {
                     mapper.skip(Cultist::setThanksGiving);
                     mapper.skip(Cultist::setQuests);
                     mapper.skip(Cultist::setCity);
-                });
+                }
+        );
     }
 
     @Override
@@ -85,7 +81,11 @@ public class QuestServiceImplementation implements QuestService {
 
     @Override
     public int needCultists(long urgency) {
-        if (urgency > 14) { return 1; } else { return 2; }
+        if (urgency > 14) {
+            return 1;
+        } else {
+            return 2;
+        }
     }
 
     @Override
@@ -173,7 +173,9 @@ public class QuestServiceImplementation implements QuestService {
         for (String gradeAndRank : allGradesAndRanks) {
             lowerOrEqualGradeAndRanks.add(gradeAndRank);
 
-            if (gradeAndRank.equalsIgnoreCase(cultistGradeAndRank)) { break; }
+            if (gradeAndRank.equalsIgnoreCase(cultistGradeAndRank)) {
+                break;
+            }
         }
 
         return lowerOrEqualGradeAndRanks;
@@ -272,11 +274,17 @@ public class QuestServiceImplementation implements QuestService {
         int chance;
 
         if (selectedQuest.getQuestType() == getPriorityQuestType(availableQuests)) {
-            if (numCultists == 1) { chance = 90; }
-            else { chance = 80; }
+            if (numCultists == 1) {
+                chance = 90;
+            } else {
+                chance = 80;
+            }
         } else {
-            if (numCultists == 1) { chance = 70; }
-            else { chance = 60; }
+            if (numCultists == 1) {
+                chance = 70;
+            } else {
+                chance = 60;
+            }
         }
 
         selectedQuest.setChance(chance);

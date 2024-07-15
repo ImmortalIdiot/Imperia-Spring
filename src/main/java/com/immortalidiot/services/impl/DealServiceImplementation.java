@@ -25,14 +25,7 @@ public class DealServiceImplementation implements DealService {
     private Deal latestCreatedDeal;
 
     @Autowired
-    public DealServiceImplementation(
-            DealRepository dealRepository,
-            ClientServiceImplementation clientServiceImplementation,
-            ManagerServiceImplementation managerServiceImplementation,
-            ModelMapper modelMapper) {
-        this.dealRepository = dealRepository;
-        this.clientServiceImplementation = clientServiceImplementation;
-        this.managerServiceImplementation = managerServiceImplementation;
+    public DealServiceImplementation(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }
 
