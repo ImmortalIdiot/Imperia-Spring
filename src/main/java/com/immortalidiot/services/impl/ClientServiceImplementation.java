@@ -30,7 +30,7 @@ public class ClientServiceImplementation implements ClientService {
             client.setName(clientDTO.getName());
             clientRepository.save(client);
         } else {
-            // TODO: entityNotFoundException handler
+            return;
         }
     }
 }
