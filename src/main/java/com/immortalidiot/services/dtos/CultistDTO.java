@@ -5,6 +5,8 @@ public class CultistDTO {
     private String grade;
     private String rank;
 
+    protected CultistDTO() {}
+
     public CultistDTO(String nickname) { this.nickname = nickname; }
 
     public String getNickname() {
