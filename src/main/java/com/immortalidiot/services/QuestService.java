@@ -13,5 +13,5 @@ public interface QuestService {
     String setReward(QuestType questType);
     String setPunishment(QuestType questType);
     List<Quest> getAllQuestsForCultist(CultistDTO cultistDTO);
-    void updateSelectedQuest(CultistDTO cultistDTO);
+    void selectQuest(CultistDTO cultistDTO);
 }
