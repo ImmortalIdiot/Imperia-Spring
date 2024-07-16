@@ -4,6 +4,7 @@ import com.immortalidiot.entities.Cultist;
 import com.immortalidiot.entities.Quest;
 import com.immortalidiot.entities.enums.QuestStatus;
 import com.immortalidiot.repositories.QuestRepository;
+import com.immortalidiot.util.exceptions.QuestNotFoundException;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
@@ -16,28 +17,51 @@ public class QuestRepositoryImpl extends BaseRepository<Quest, Long> implements 
         String jpql = "SELECT q " +
                 "FROM Quest q JOIN q.cultists c " +
                 "WHERE c IN :cultists AND q.questStatus IN :statuses";
-        TypedQuery<Quest> query = entityManager.createQuery(jpql, Quest.class);
-        query.setParameter("cultists", cultists);
-        query.setParameter("statuses", statuses);
-        return query.getResultList();
+        List<Quest> quests = entityManager.createQuery(jpql, Quest.class)
+                .setParameter("cultists", cultists)
+                .setParameter("statuses", statuses)
+                .getResultList();
+
+        if (quests.isEmpty()) {
+            throw new QuestNotFoundException("Quests do not exist");
+        }
+
+        return quests;
     }
 
     @Override
     public List<Quest> findQuestsByQuestStatus(QuestStatus questStatus) {
         String jpql = "SELECT q FROM Quest q WHERE q.questStatus = :status";
-        TypedQuery<Quest> query = entityManager.createQuery(jpql, Quest.class);
-        query.setParameter("status", questStatus);
-        return query.getResultList();
+        List<Quest> quests = entityManager
+                .createQuery(jpql, Quest.class)
+                .setParameter("status", questStatus)
+                .getResultList();
+
+        if (quests.isEmpty()) {
+            throw new QuestNotFoundException("Quests with status " + questStatus + " do not exist");
+        }
+
+        return quests;
     }
 
     @Override
     public List<Quest> findByMinGradeAndMinRankAndQuestStatus(String minGrade, String minRank, QuestStatus questStatus) {
         String jpql = "SELECT q FROM Quest q " +
                 "WHERE q.minGrade = :minGrade AND q.minRank = :minRank AND q.questStatus = :status";
-        TypedQuery<Quest> query = entityManager.createQuery(jpql, Quest.class);
-        query.setParameter("minGrade", minGrade);
-        query.setParameter("minRank", minRank);
-        query.setParameter("status", questStatus);
-        return query.getResultList();
+        List<Quest> quests = entityManager
+                .createQuery(jpql, Quest.class)
+                .setParameter("minGrade", minGrade)
+                .setParameter("minRank", minRank)
+                .setParameter("status", questStatus)
+                .getResultList();
+
+        if (quests.isEmpty()) {
+            throw new QuestNotFoundException("Quests with " +
+                    "status " + questStatus +
+                    ", minGrade " + minGrade +
+                    ", minRank " + minRank + " do not exist");
+        }
+
+        return quests;
     }
 }
