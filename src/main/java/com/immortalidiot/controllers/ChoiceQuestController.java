@@ -5,10 +5,7 @@ import com.immortalidiot.services.dtos.CultistDTO;
 import com.immortalidiot.services.dtos.QuestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/quests/available")
@@ -21,7 +18,10 @@ public class ChoiceQuestController {
     }
 
     @PostMapping("/choice")
-    public ResponseEntity<QuestDTO> choiceQuest(@RequestParam CultistDTO cultistDTO) {
+    public ResponseEntity<QuestDTO> choiceQuest(@RequestParam String nickname,
+                                                @RequestParam String grade,
+                                                @RequestParam String rank) {
+        CultistDTO cultistDTO = new CultistDTO(nickname, grade, rank);
         System.out.println(questService.selectQuest(cultistDTO));
         return ResponseEntity.ok(questService.selectQuest(cultistDTO));
     }
