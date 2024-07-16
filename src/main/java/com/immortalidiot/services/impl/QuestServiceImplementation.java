@@ -260,6 +260,7 @@ public class QuestServiceImplementation implements QuestService {
 
     private void addCultistToQuest(CultistDTO cultistDTO, Quest quest) {
         Cultist cultist = mapCultistDTOToEntity(cultistDTO);
+        cultist.getQuests().add(quest);
         quest.getCultists().add(cultist);
     }
 
