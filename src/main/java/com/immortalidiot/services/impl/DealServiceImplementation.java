@@ -6,8 +6,6 @@ import com.immortalidiot.entities.Manager;
 import com.immortalidiot.entities.enums.QuestType;
 import com.immortalidiot.repositories.DealRepository;
 import com.immortalidiot.repositories.ManagerRepository;
-import com.immortalidiot.repositories.impl.DealRepositoryImpl;
-import com.immortalidiot.repositories.impl.ManagerRepositoryImpl;
 import com.immortalidiot.services.ClientService;
 import com.immortalidiot.services.DealService;
 import com.immortalidiot.services.dtos.ClientDTO;
@@ -17,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Service
 public class DealServiceImplementation implements DealService {
@@ -71,8 +69,8 @@ public class DealServiceImplementation implements DealService {
             case MURDER -> cost += 400000;
         }
 
-        LocalDate registrationDate = LocalDate.parse(termsParts[1]);
-        LocalDate targetDate = LocalDate.parse(termsParts[2]);
+        LocalDateTime registrationDate = LocalDateTime.parse(termsParts[1]);
+        LocalDateTime targetDate = LocalDateTime.parse(termsParts[2]);
         validateDate(registrationDate, targetDate);
 
         long urgency = Duration.between(registrationDate, targetDate).toDays();
@@ -94,7 +92,7 @@ public class DealServiceImplementation implements DealService {
         if (questType == null) throw new IllegalArgumentException("Unknown quest type");
     }
 
-    private void validateDate(LocalDate registrationDate, LocalDate targetDate) {
+    private void validateDate(LocalDateTime registrationDate, LocalDateTime targetDate) {
         if (registrationDate.isAfter(targetDate)) throw new IllegalArgumentException(
                 "Incorrect registration date or target date");
     }
