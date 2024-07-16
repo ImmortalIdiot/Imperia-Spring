@@ -72,6 +72,9 @@ public class QuestServiceImplementation implements QuestService {
         String reward = setReward(questType);
         String punishment = setPunishment(questType);
 
+        validateReward(reward);
+        validatePunishment(punishment);
+
         Quest quest = new Quest(questType, minGrade, minRank, numCultists,
                 localDateToOffsetDateTime(registrationDate), localDateToOffsetDateTime(targetDate),
                 reward, punishment, latestDeal);
