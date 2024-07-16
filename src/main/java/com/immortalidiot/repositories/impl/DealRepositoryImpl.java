@@ -2,6 +2,7 @@ package com.immortalidiot.repositories.impl;
 
 import com.immortalidiot.entities.Deal;
 import com.immortalidiot.repositories.DealRepository;
+import com.immortalidiot.util.exceptions.DealNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.NoResultException;
 import jakarta.transaction.Transactional;
@@ -17,7 +18,7 @@ public class DealRepositoryImpl extends BaseRepository<Deal, Long> implements De
             return entityManager.createQuery(jpql, Deal.class).getSingleResult();
         } catch (NoResultException e) {
             // TODO: replace with custom exception
-            throw new EntityNotFoundException("No latest deal found");
+            throw new DealNotFoundException("No latest deal found");
         }
     }
 }
