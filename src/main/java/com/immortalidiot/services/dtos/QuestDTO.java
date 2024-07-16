@@ -23,6 +23,8 @@ public class QuestDTO {
     private Set<Cultist> cultists;
     private Deal deal;
 
+    public QuestDTO() {}
+
     public QuestDTO(Long id,
                     QuestType questType,
                     QuestStatus questStatus,
@@ -101,4 +103,10 @@ public class QuestDTO {
     public Deal getDeal() { return deal; }
 
     public void setDeal(Deal deal) { this.deal = deal; }
+
+    @Override
+    public String toString() {
+        return getId() + " " + getChance() + " " + getNumCultists() + " " +
+                getQuestStatus().getStatusName() + " " + getQuestType().getQuestType();
+    }
 }
