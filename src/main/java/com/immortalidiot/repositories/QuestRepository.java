@@ -10,9 +10,7 @@ import java.util.List;
 @Component
 public interface QuestRepository {
     List<Quest> findQuestsByCultists(List<Cultist> cultists, List<QuestStatus> statuses);
-
     List<Quest> findQuestsByQuestStatus(QuestStatus questStatus);
-
     List<Quest> findByMinGradeAndMinRankAndQuestStatus(String minGrade, String minRank, QuestStatus questStatus);
     void save(Quest quest);
 }

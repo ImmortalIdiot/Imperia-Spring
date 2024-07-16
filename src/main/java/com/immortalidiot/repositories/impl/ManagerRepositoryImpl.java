@@ -3,7 +3,6 @@ package com.immortalidiot.repositories.impl;
 import com.immortalidiot.entities.Manager;
 import com.immortalidiot.repositories.ManagerRepository;
 import com.immortalidiot.util.exceptions.ManagerNotFoundException;
-import com.immortalidiot.util.exceptions.QuestNotFoundException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

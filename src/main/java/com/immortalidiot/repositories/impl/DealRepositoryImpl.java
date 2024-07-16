@@ -3,7 +3,6 @@ package com.immortalidiot.repositories.impl;
 import com.immortalidiot.entities.Deal;
 import com.immortalidiot.repositories.DealRepository;
 import com.immortalidiot.util.exceptions.DealNotFoundException;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.NoResultException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;

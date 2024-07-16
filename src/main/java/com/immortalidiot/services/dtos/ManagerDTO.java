@@ -1,12 +1,11 @@
 package com.immortalidiot.services.dtos;
 
-import com.immortalidiot.entities.Manager;
-
 public class ManagerDTO {
     private String code;
     private String phoneNumber;
 
-    protected ManagerDTO() {}
+    protected ManagerDTO() {
+    }
 
     public ManagerDTO(String code, String phoneNumber) {
         this.code = code;
