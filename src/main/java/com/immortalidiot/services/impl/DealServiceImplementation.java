@@ -9,6 +9,7 @@ import com.immortalidiot.repositories.ManagerRepository;
 import com.immortalidiot.services.ClientService;
 import com.immortalidiot.services.DealService;
 import com.immortalidiot.services.dtos.ClientDTO;
+import com.immortalidiot.services.dtos.DealDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,7 @@ public class DealServiceImplementation implements DealService {
 
     @Override
     @Transactional
-    public void createDeal(ClientDTO clientDTO, String clientTerms) {
+    public DealDTO createDeal(ClientDTO clientDTO, String clientTerms) {
         Manager manager = managerRepository.getRandomManager(managerRepository.getAllManagers());
 
         Client client = mapClientDTOToEntity(clientDTO);
@@ -46,8 +47,9 @@ public class DealServiceImplementation implements DealService {
         double amount = calculateCost(clientTerms);
 
         Deal deal = new Deal(manager, client, clientTerms, amount);
-
         dealRepository.save(deal);
+
+        return mapDealEntityToDTO(deal);
     }
 
     private double calculateCost(String clientTerms) {
@@ -99,5 +101,9 @@ public class DealServiceImplementation implements DealService {
 
     private Client mapClientDTOToEntity(ClientDTO clientDTO) {
         return modelMapper.map(clientDTO, Client.class);
+    }
+
+    private DealDTO mapDealEntityToDTO(Deal deal) {
+        return modelMapper.map(deal, DealDTO.class);
     }
 }
