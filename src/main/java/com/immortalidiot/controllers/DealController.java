@@ -17,7 +17,7 @@ public class DealController {
     }
 
     @PostMapping("/create")
-    public void createNewDeal(@RequestParam DealRequestDTO dealRequestDTO) {
+    public void createNewDeal(@RequestBody DealRequestDTO dealRequestDTO) {
         System.out.println("Метод запустился");
         ClientDTO clientDTO = new ClientDTO(dealRequestDTO.getContact(), dealRequestDTO.getName());
         dealService.createDeal(clientDTO, dealRequestDTO.getTerms());
