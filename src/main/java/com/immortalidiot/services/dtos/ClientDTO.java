@@ -4,6 +4,8 @@ public class ClientDTO {
     private String contact;
     private String name;
 
+    private ClientDTO() {}
+
     public ClientDTO(String contact, String name) {
         this.contact = contact;
         this.name = name;
