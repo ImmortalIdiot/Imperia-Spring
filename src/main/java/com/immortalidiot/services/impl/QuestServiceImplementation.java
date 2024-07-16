@@ -11,6 +11,7 @@ import com.immortalidiot.repositories.DealRepository;
 import com.immortalidiot.repositories.QuestRepository;
 import com.immortalidiot.services.QuestService;
 import com.immortalidiot.services.dtos.CultistDTO;
+import com.immortalidiot.services.dtos.QuestDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -192,12 +193,21 @@ public class QuestServiceImplementation implements QuestService {
         List<String> lowerOrEqualGradeRanks = getLowerOrEqualGradesAndRanks(cultistDTO);
 
         List<Quest> availableQuests = new ArrayList<>();
+        List<Quest> quests;
 
         for (String gradeAndRank : lowerOrEqualGradeRanks) {
-            List<Quest> quests = questRepository.findByMinGradeAndMinRankAndQuestStatus(
-                    gradeAndRank.split(" ")[0],
-                    gradeAndRank.split(" ")[1],
-                    QuestStatus.AVAILABLE);
+            String[] parts = gradeAndRank.split(" ");
+            if (parts.length < 2) {
+                quests = questRepository.findByMinGradeAndMinRankAndQuestStatus(
+                        gradeAndRank.split(" ")[0],
+                        "",
+                        QuestStatus.AVAILABLE);
+            } else {
+                quests = questRepository.findByMinGradeAndMinRankAndQuestStatus(
+                        gradeAndRank.split(" ")[0],
+                        gradeAndRank.split(" ")[1],
+                        QuestStatus.AVAILABLE);
+            }
             availableQuests.addAll(quests);
         }
 
@@ -265,7 +275,7 @@ public class QuestServiceImplementation implements QuestService {
     }
 
     @Override
-    public void selectQuest(CultistDTO cultistDTO) {
+    public QuestDTO selectQuest(CultistDTO cultistDTO) {
         List<Quest> availableQuests = getSortedQuestsForCultist(cultistDTO);
 
         if (availableQuests.isEmpty()) {
@@ -300,9 +310,14 @@ public class QuestServiceImplementation implements QuestService {
         if (chance >= 80 && numParticipants == numCultists) {
             selectedQuest.setQuestStatus(QuestStatus.ONGOING);
         }
+        return mapQuestEntityToDTO(selectedQuest);
     }
 
     private Cultist mapCultistDTOToEntity(CultistDTO cultistDTO) {
         return modelMapper.map(cultistDTO, Cultist.class);
+    }
+
+    private QuestDTO mapQuestEntityToDTO(Quest quest) {
+        return modelMapper.map(quest, QuestDTO.class);
     }
 }
