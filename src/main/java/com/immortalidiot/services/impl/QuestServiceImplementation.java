@@ -13,6 +13,7 @@ import com.immortalidiot.services.QuestService;
 import com.immortalidiot.services.dtos.CultistDTO;
 import com.immortalidiot.services.dtos.DealDTO;
 import com.immortalidiot.services.dtos.QuestDTO;
+import com.immortalidiot.util.exceptions.QuestNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -281,8 +282,7 @@ public class QuestServiceImplementation implements QuestService {
         List<Quest> availableQuests = getSortedQuestsForCultist(cultistDTO);
 
         if (availableQuests.isEmpty()) {
-            // replace this exception by custom exception
-            throw new IllegalArgumentException("There are no available quests");
+            throw new QuestNotFoundException("There are no available quests");
         }
 
         Quest selectedQuest = getRandomQuest(availableQuests);
