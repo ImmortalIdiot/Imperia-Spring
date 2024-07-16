@@ -1,6 +1,8 @@
 package com.immortalidiot.entities;
 
 import jakarta.persistence.*;
+
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -13,7 +15,7 @@ public class Cultist {
     private String rank;
     private City city;
     private int thanksGiving;
-    private Set<Quest> quests;
+    private Set<Quest> quests = new HashSet<>();
 
     public Cultist(String nickname,
                    String lastName,
