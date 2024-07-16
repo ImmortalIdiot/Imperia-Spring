@@ -111,7 +111,7 @@ public class Quest extends IdEntity {
     }
 
     public void setDateCompleted(OffsetDateTime dateCompleted) {
-        if (dateFormed.isBefore(dateCompleted)) { this.dateCompleted = dateCompleted; }
+        if (this.dateFormed == null || dateCompleted.isBefore(dateFormed)) { this.dateCompleted = dateCompleted; }
         else throw new IllegalArgumentException("Incorrect completed date");
     }
 
@@ -143,7 +143,7 @@ public class Quest extends IdEntity {
         else { throw new IllegalArgumentException("Incorrect chance value"); }
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "quest_cultist",
             joinColumns = @JoinColumn(name = "quest_id"),
