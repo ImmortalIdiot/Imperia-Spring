@@ -17,7 +17,6 @@ public class DealRepositoryImpl extends BaseRepository<Deal, Long> implements De
         try {
             return entityManager.createQuery(jpql, Deal.class).getSingleResult();
         } catch (NoResultException e) {
-            // TODO: replace with custom exception
             throw new DealNotFoundException("No latest deal found");
         }
     }
