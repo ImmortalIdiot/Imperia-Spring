@@ -5,15 +5,15 @@ import com.immortalidiot.entities.Manager;
 import com.immortalidiot.entities.Quest;
 
 public class DealDTO {
-    private Manager manager;
-    private Client client;
+    private ManagerDTO manager;
+    private ClientDTO client;
     private String clientTerms;
     private double amount;
     private Quest quest;
 
     protected DealDTO() {};
 
-    public DealDTO(Manager manager, Client client, String clientTerms, double amount, Quest quest) {
+    public DealDTO(ManagerDTO manager, ClientDTO client, String clientTerms, double amount, Quest quest) {
         this.manager = manager;
         this.client = client;
         this.clientTerms = clientTerms;
@@ -21,13 +21,13 @@ public class DealDTO {
         this.quest = quest;
     }
 
-    public Manager getManager() { return manager; }
+    public ManagerDTO getManager() { return manager; }
 
-    public void setManager(Manager manager) { this.manager = manager; }
+    public void setManager(ManagerDTO manager) { this.manager = manager; }
 
-    public Client getClient() { return client; }
+    public ClientDTO getClient() { return client; }
 
-    public void setClient(Client client) { this.client = client; }
+    public void setClient(ClientDTO client) { this.client = client; }
 
     public String getClientTerms() { return clientTerms; }
 
