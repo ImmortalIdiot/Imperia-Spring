@@ -5,7 +5,6 @@ import com.immortalidiot.entities.Quest;
 import com.immortalidiot.entities.enums.QuestStatus;
 import com.immortalidiot.repositories.QuestRepository;
 import com.immortalidiot.util.exceptions.QuestNotFoundException;
-import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -45,7 +44,9 @@ public class QuestRepositoryImpl extends BaseRepository<Quest, Long> implements 
     }
 
     @Override
-    public List<Quest> findByMinGradeAndMinRankAndQuestStatus(String minGrade, String minRank, QuestStatus questStatus) {
+    public List<Quest> findByMinGradeAndMinRankAndQuestStatus(String minGrade,
+                                                              String minRank,
+                                                              QuestStatus questStatus) {
         String jpql = "SELECT q FROM Quest q " +
                 "WHERE q.minGrade = :minGrade AND q.minRank = :minRank AND q.questStatus = :status";
         List<Quest> quests = entityManager
