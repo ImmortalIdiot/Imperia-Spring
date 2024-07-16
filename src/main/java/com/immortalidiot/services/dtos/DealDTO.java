@@ -5,6 +5,7 @@ import com.immortalidiot.entities.Manager;
 import com.immortalidiot.entities.Quest;
 
 public class DealDTO {
+    private Long id;
     private Manager manager;
     private Client client;
     private String clientTerms;
