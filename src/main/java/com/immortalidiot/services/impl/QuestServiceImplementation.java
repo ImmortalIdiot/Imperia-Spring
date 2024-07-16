@@ -265,7 +265,7 @@ public class QuestServiceImplementation implements QuestService {
     }
 
     @Override
-    public void updateSelectedQuest(CultistDTO cultistDTO) {
+    public void selectQuest(CultistDTO cultistDTO) {
         List<Quest> availableQuests = getSortedQuestsForCultist(cultistDTO);
 
         if (availableQuests.isEmpty()) {
