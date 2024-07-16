@@ -6,4 +6,8 @@ public class QuestNotFoundException extends EntityNotFoundException {
     public QuestNotFoundException() {
         super("Quest not found");
     }
+
+    public QuestNotFoundException(String message) {
+        super(message);
+    }
 }

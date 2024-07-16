@@ -6,4 +6,8 @@ public class CultistNotFoundException extends EntityNotFoundException {
     public CultistNotFoundException() {
         super("Cultist not found");
     }
+
+    public CultistNotFoundException(String message) {
+        super(message);
+    }
 }
