@@ -7,6 +7,7 @@ import com.immortalidiot.entities.enums.QuestStatus;
 import com.immortalidiot.repositories.CultistRepository;
 import com.immortalidiot.services.CultistService;
 import com.immortalidiot.services.dtos.CultistDTO;
+import com.immortalidiot.services.dtos.CultistResponseDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,16 +30,18 @@ public class CultistServiceImpl implements CultistService {
 
     @Override
     @Transactional
-    public CultistDTO promoteCultist(CultistDTO cultistDTO) {
+    public CultistResponseDTO promoteCultist(CultistDTO cultistDTO) {
         Cultist cultist = mapCultistDTOToEntity(cultistDTO);
         List<Quest> quests = cultistRepository.findQuestsByCultistId(cultist.getNickname());
 
-        if (shouldPromote(quests)) {
+        boolean shouldPromote = shouldPromote(quests);
+
+        if (shouldPromote) {
             promote(cultist);
             cultistRepository.save(cultist);
         }
 
-        return mapCultistEntityToDTO(cultist);
+        return mapCultistEntityToDTO(cultist, shouldPromote);
     }
 
     private boolean shouldPromote(List<Quest> quests) {
@@ -92,7 +95,7 @@ public class CultistServiceImpl implements CultistService {
         return modelMapper.map(cultistDTO, Cultist.class);
     }
 
-    private CultistDTO mapCultistEntityToDTO(Cultist cultist) {
-        return modelMapper.map(cultist, CultistDTO.class);
+    private CultistResponseDTO mapCultistEntityToDTO(Cultist cultist, boolean isPromoted) {
+        return new CultistResponseDTO(cultist.getNickname(), cultist.getGrade(), cultist.getRank(), isPromoted);
     }
 }
