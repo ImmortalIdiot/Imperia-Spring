@@ -3,6 +3,7 @@ package com.immortalidiot.services;
 import com.immortalidiot.entities.Quest;
 import com.immortalidiot.entities.enums.QuestType;
 import com.immortalidiot.services.dtos.CultistDTO;
+import com.immortalidiot.services.dtos.QuestDTO;
 
 import java.util.List;
 
@@ -13,5 +14,5 @@ public interface QuestService {
     String setReward(QuestType questType);
     String setPunishment(QuestType questType);
     List<Quest> getAllQuestsForCultist(CultistDTO cultistDTO);
-    void selectQuest(CultistDTO cultistDTO);
+    QuestDTO selectQuest(CultistDTO cultistDTO);
 }
