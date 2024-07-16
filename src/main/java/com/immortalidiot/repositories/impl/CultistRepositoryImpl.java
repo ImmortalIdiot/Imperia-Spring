@@ -11,7 +11,7 @@ import java.util.List;
 public class CultistRepositoryImpl extends BaseRepository<Cultist, String> implements CultistRepository {
     @Override
     public List<Quest> findQuestsByCultistId(String id) {
-        String jpql = "SELECT q FROM Quest q WHERE q.cultist.nickname = :nickname";
+        String jpql = "SELECT q FROM Quest q JOIN q.cultists c WHERE c.nickname = :nickname";
         return entityManager.createQuery(jpql, Quest.class)
                 .setParameter("nickname", id)
                 .getResultList();
