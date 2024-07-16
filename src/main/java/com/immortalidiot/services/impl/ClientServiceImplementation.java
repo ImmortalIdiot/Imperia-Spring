@@ -25,7 +25,7 @@ public class ClientServiceImplementation implements ClientService {
     public void registerClient(ClientDTO clientDTO) {
         Client client = modelMapper.map(clientDTO, Client.class);
 
-        if (client != null) {
+        if (client.getContact() == null) {
             client.setContact(clientDTO.getContact());
             client.setName(clientDTO.getName());
             clientRepository.save(client);
