@@ -54,8 +54,8 @@ public class DealServiceImplementation implements DealService {
 
     private double calculateCost(String clientTerms) {
         // clientTerms example:
-        // "bodyguards (description: questType); 14.04.2020 (description: dealDate);
-        //             20.04.2020 (description: targetDate); other details"
+        // "bodyguards (description: questType); 2024-01-01T12:00:00 (description: dealDate);
+        //             2024-01-8T23:59:00 (description: targetDate); other details"
         String[] termsParts = clientTerms.split("; ");
 
         QuestType questType = QuestType.getQuestTypeByName(termsParts[0]);
