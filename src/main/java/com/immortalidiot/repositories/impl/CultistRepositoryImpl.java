@@ -3,6 +3,7 @@ package com.immortalidiot.repositories.impl;
 import com.immortalidiot.entities.Cultist;
 import com.immortalidiot.entities.Quest;
 import com.immortalidiot.repositories.CultistRepository;
+import com.immortalidiot.util.exceptions.QuestNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,8 +13,14 @@ public class CultistRepositoryImpl extends BaseRepository<Cultist, String> imple
     @Override
     public List<Quest> findQuestsByCultistId(String id) {
         String jpql = "SELECT q FROM Quest q JOIN q.cultists c WHERE c.nickname = :nickname";
-        return entityManager.createQuery(jpql, Quest.class)
+        List<Quest> quests = entityManager.createQuery(jpql, Quest.class)
                 .setParameter("nickname", id)
                 .getResultList();
+
+        if (quests.isEmpty()) {
+            throw new QuestNotFoundException("No quests were found which " + id + " participants");
+        }
+
+        return quests;
     }
 }
