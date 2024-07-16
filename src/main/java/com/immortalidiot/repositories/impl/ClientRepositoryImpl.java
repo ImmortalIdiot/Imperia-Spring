@@ -2,7 +2,7 @@ package com.immortalidiot.repositories.impl;
 
 import com.immortalidiot.entities.Client;
 import com.immortalidiot.repositories.ClientRepository;
-import jakarta.persistence.EntityNotFoundException;
+import com.immortalidiot.util.exceptions.ClientNotFoundException;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
@@ -17,8 +17,7 @@ public class ClientRepositoryImpl extends BaseRepository<Client, String> impleme
         try {
             return query.getSingleResult();
         } catch (NoResultException e) {
-            // TODO: replace with custom exception
-            throw new EntityNotFoundException("Client with such contact does not exist");
+            throw new ClientNotFoundException();
         }
     }
 }
