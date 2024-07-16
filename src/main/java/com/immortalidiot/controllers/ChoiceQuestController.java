@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("quests/available")
+@RequestMapping("/quests/available")
 public class ChoiceQuestController {
     private final QuestService questService;
 
