@@ -2,7 +2,8 @@ package com.immortalidiot.repositories.impl;
 
 import com.immortalidiot.entities.Manager;
 import com.immortalidiot.repositories.ManagerRepository;
-import jakarta.persistence.TypedQuery;
+import com.immortalidiot.util.exceptions.ManagerNotFoundException;
+import com.immortalidiot.util.exceptions.QuestNotFoundException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,8 +16,13 @@ public class ManagerRepositoryImpl extends BaseRepository<Manager, String> imple
     @Transactional(readOnly = true)
     public List<Manager> getAllManagers() {
         String selectAllManagers = "Select m FROM Manager m";
-        TypedQuery<Manager> query = entityManager.createQuery(selectAllManagers, Manager.class);
-        return query.getResultList();
+        List<Manager> managers = entityManager.createQuery(selectAllManagers, Manager.class).getResultList();
+
+        if (managers.isEmpty()) {
+            throw new ManagerNotFoundException("Managers do not exist");
+        }
+
+        return managers;
     }
 
     public Manager getRandomManager(List<Manager> managers) {
