@@ -7,7 +7,11 @@ public class CultistDTO {
 
     protected CultistDTO() {}
 
-    public CultistDTO(String nickname) { this.nickname = nickname; }
+    public CultistDTO(String nickname, String grade, String rank) {
+        this.nickname = nickname;
+        this.grade = grade;
+        this.rank = rank;
+    }
 
     public String getNickname() {
         return nickname;
