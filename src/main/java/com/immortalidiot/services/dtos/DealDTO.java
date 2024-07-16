@@ -12,6 +12,8 @@ public class DealDTO {
     private double amount;
     private Quest quest;
 
+    protected DealDTO() {};
+
     public DealDTO(Manager manager, Client client, String clientTerms, double amount, Quest quest) {
         this.manager = manager;
         this.client = client;
