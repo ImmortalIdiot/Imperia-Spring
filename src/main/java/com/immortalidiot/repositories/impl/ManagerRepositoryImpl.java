@@ -25,7 +25,7 @@ public class ManagerRepositoryImpl extends BaseRepository<Manager, String> imple
     }
 
     public Manager getRandomManager(List<Manager> managers) {
-        if (managers.isEmpty()) { throw new IllegalStateException("Managers not founded"); }
+        if (managers.isEmpty()) { throw new ManagerNotFoundException("Managers not founded"); }
         Random randomizer = new Random();
         return managers.get(randomizer.nextInt(managers.size()));
     }
