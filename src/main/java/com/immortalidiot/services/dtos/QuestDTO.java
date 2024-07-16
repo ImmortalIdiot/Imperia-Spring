@@ -20,8 +20,8 @@ public class QuestDTO {
     private String reward;
     private String punishment;
     private int chance;
-    private Set<Cultist> cultists;
-    private Deal deal;
+    private Set<String> cultistsNicknames;
+    private long dealId;
 
     public QuestDTO() {}
 
@@ -35,8 +35,8 @@ public class QuestDTO {
                     OffsetDateTime dateCompleted,
                     String reward, String punishment,
                     int chance,
-                    Set<Cultist> cultists,
-                    Deal deal) {
+                    Set<String> cultists,
+                    long dealId) {
         this.id = id;
         this.questType = questType;
         this.questStatus = questStatus;
@@ -48,8 +48,8 @@ public class QuestDTO {
         this.reward = reward;
         this.punishment = punishment;
         this.chance = chance;
-        this.cultists = cultists;
-        this.deal = deal;
+        this.cultistsNicknames = cultists;
+        this.dealId = dealId;
     }
 
     public Long getId() { return id; }
@@ -96,13 +96,13 @@ public class QuestDTO {
 
     public void setChance(int chance) { this.chance = chance; }
 
-    public Set<Cultist> getCultists() { return cultists; }
+    public Set<String> getCultists() { return cultistsNicknames; }
 
-    public void setCultists(Set<Cultist> cultists) { this.cultists = cultists; }
+    public void setCultists(Set<String> cultistsNicknames) { this.cultistsNicknames = cultistsNicknames; }
 
-    public Deal getDeal() { return deal; }
+    public long getDeal() { return dealId; }
 
-    public void setDeal(Deal deal) { this.deal = deal; }
+    public void setDeal(long dealId) { this.dealId = dealId; }
 
     @Override
     public String toString() {

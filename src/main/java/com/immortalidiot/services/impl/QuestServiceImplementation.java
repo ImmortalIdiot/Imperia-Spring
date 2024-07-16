@@ -11,6 +11,7 @@ import com.immortalidiot.repositories.DealRepository;
 import com.immortalidiot.repositories.QuestRepository;
 import com.immortalidiot.services.QuestService;
 import com.immortalidiot.services.dtos.CultistDTO;
+import com.immortalidiot.services.dtos.DealDTO;
 import com.immortalidiot.services.dtos.QuestDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class QuestServiceImplementation implements QuestService {
 
@@ -318,6 +320,23 @@ public class QuestServiceImplementation implements QuestService {
     }
 
     private QuestDTO mapQuestEntityToDTO(Quest quest) {
-        return modelMapper.map(quest, QuestDTO.class);
+        Set<String> cultistsNicks = quest.getCultists()
+                .stream()
+                .map(Cultist::getNickname)
+                .collect(Collectors.toSet());
+
+        return new QuestDTO(quest.getId(),
+                quest.getQuestType(),
+                quest.getQuestStatus(),
+                quest.getMinGrade(),
+                quest.getMinRank(),
+                quest.getNumCultists(),
+                quest.getDateFormed(),
+                quest.getDateCompleted(),
+                quest.getReward(),
+                quest.getPunishment(),
+                quest.getChance(),
+                cultistsNicks,
+                quest.getDeal().getId());
     }
 }
