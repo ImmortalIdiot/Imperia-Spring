@@ -8,6 +8,7 @@ import com.immortalidiot.repositories.DealRepository;
 import com.immortalidiot.repositories.ManagerRepository;
 import com.immortalidiot.services.ClientService;
 import com.immortalidiot.services.DealService;
+import com.immortalidiot.services.QuestService;
 import com.immortalidiot.services.dtos.ClientDTO;
 import com.immortalidiot.services.dtos.DealDTO;
 import org.modelmapper.ModelMapper;
@@ -23,16 +24,19 @@ public class DealServiceImplementation implements DealService {
     private final DealRepository dealRepository;
     private final ClientService clientService;
     private final ManagerRepository managerRepository;
+    private final QuestService questService;
     private final ModelMapper modelMapper;
 
     @Autowired
     public DealServiceImplementation(DealRepository dealRepository,
                                      ClientService clientService,
                                      ManagerRepository managerRepository,
+                                     QuestService questService,
                                      ModelMapper modelMapper) {
         this.dealRepository = dealRepository;
         this.clientService = clientService;
         this.managerRepository = managerRepository;
+        this.questService = questService;
         this.modelMapper = modelMapper;
     }
 
@@ -48,6 +52,7 @@ public class DealServiceImplementation implements DealService {
 
         Deal deal = new Deal(manager, client, clientTerms, amount);
         dealRepository.save(deal);
+        questService.createQuest();
 
         return mapDealEntityToDTO(deal);
     }

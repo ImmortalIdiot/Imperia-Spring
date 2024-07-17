@@ -53,7 +53,8 @@ public class AppConfig {
 
     @Bean
     public DealService dealService() {
-        return new DealServiceImplementation(dealRepository(), clientService(), managerRepository(), modelMapper());
+        return new DealServiceImplementation(dealRepository(), clientService(),
+                                             managerRepository(), questService(), modelMapper());
     }
 
     @Bean
