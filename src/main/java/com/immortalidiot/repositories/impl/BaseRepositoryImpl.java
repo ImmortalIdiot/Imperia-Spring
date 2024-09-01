@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public abstract class BaseRepository<EntityType, EntityPrimaryKeyType> {
+public abstract class BaseRepositoryImpl <EntityType, EntityPrimaryKeyType> {
 
     @PersistenceContext
     protected EntityManager entityManager;

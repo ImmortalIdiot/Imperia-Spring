@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 @Repository
-public class ManagerRepositoryImpl extends BaseRepository<Manager, String> implements ManagerRepository {
+public class ManagerRepositoryImpl extends BaseRepositoryImpl<Manager, String> implements ManagerRepository {
     @Override
     @Transactional(readOnly = true)
     public List<Manager> getAllManagers() {

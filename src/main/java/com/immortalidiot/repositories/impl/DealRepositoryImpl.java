@@ -8,7 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class DealRepositoryImpl extends BaseRepository<Deal, Long> implements DealRepository {
+public class DealRepositoryImpl extends BaseRepositoryImpl<Deal, Long> implements DealRepository {
     @Override
     @Transactional
     public Deal findLatestDeal() {

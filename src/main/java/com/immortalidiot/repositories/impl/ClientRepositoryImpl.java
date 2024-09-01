@@ -8,7 +8,7 @@ import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ClientRepositoryImpl extends BaseRepository<Client, String> implements ClientRepository {
+public class ClientRepositoryImpl extends BaseRepositoryImpl<Client, String> implements ClientRepository {
     @Override
     public Client findByContact(String contact) {
         String jpql = "SELECT c FROM Client c WHERE c.contact = :contact";
