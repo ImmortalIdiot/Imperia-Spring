@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/quests/available")
 public class ChoiceQuestController {
+
     private final QuestService questService;
 
     @Autowired

@@ -11,6 +11,7 @@ import java.util.List;
 
 @Repository
 public class QuestRepositoryImpl extends BaseRepositoryImpl<Quest, Long> implements QuestRepository {
+
     @Override
     public List<Quest> findQuestsByCultists(List<Cultist> cultists, List<QuestStatus> statuses) {
         String jpql = "SELECT q " +

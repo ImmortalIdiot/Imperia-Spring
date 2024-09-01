@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 
 @Service
 public class DealServiceImplementation implements DealService {
+
     private final DealRepository dealRepository;
     private final ClientService clientService;
     private final ManagerRepository managerRepository;

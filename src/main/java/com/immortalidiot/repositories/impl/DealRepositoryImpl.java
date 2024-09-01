@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class DealRepositoryImpl extends BaseRepositoryImpl<Deal, Long> implements DealRepository {
+
     @Override
     @Transactional
     public Deal findLatestDeal() {

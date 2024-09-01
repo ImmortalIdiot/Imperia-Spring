@@ -19,6 +19,7 @@ import java.util.List;
 
 @Service
 public class CultistServiceImpl implements CultistService {
+
     private final CultistRepository cultistRepository;
     private final ModelMapper modelMapper;
 

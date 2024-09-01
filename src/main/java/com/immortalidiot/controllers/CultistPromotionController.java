@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/cultists")
 public class CultistPromotionController {
+
     private final CultistService cultistService;
 
     @Autowired

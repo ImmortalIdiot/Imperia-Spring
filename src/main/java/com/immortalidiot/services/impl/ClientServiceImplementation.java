@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ClientServiceImplementation implements ClientService {
+
     private final ClientRepository clientRepository;
     private final ModelMapper modelMapper;
 

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class DealController {
+
     private final DealService dealService;
 
     @Autowired
