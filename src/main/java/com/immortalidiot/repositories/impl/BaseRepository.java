@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 public abstract class BaseRepository<EntityType, EntityPrimaryKeyType> {
-    private JpaRepository<EntityType, EntityPrimaryKeyType> genericRepository;
 
     @PersistenceContext
     protected EntityManager entityManager;
@@ -24,9 +23,9 @@ public abstract class BaseRepository<EntityType, EntityPrimaryKeyType> {
     }
 
     @Transactional
-    public EntityType findById(EntityPrimaryKeyType id) {
-        Optional<EntityType> optionalEntity = genericRepository.findById(id);
-        return optionalEntity.orElseThrow(() ->
+    public EntityType findById(Class<EntityType> entityTypeClass, EntityPrimaryKeyType id) {
+        EntityType entity = entityManager.find(entityTypeClass, id);
+        return Optional.ofNullable(entity).orElseThrow(() ->
                 new EntityNotFoundException(entityTypeClass.getSimpleName() + " with id " + id + " not found"));
     }
 
