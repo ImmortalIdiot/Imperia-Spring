@@ -38,7 +38,7 @@ public class CultistServiceImpl implements CultistService {
 
         if (shouldPromote) {
             promote(cultist);
-            cultistRepository.save(cultist);
+            cultistRepository.update(cultist);
         }
 
         return mapCultistEntityToDTO(cultist, shouldPromote);

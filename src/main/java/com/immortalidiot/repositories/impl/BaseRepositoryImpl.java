@@ -30,7 +30,7 @@ public abstract class BaseRepositoryImpl <EntityType, EntityPrimaryKeyType>
     }
 
     @Override
-    public EntityType update(EntityType entity) {
-        return entityManager.merge(entity);
+    public void update(EntityType entity) {
+        entityManager.merge(entity);
     }
 }
