@@ -15,8 +15,6 @@ public abstract class BaseRepositoryImpl <EntityType, EntityPrimaryKeyType>
     @PersistenceContext
     protected EntityManager entityManager;
 
-    private Class<EntityType> entityTypeClass;
-
     @Override
     public void save(EntityType entity) {
         entityManager.persist(entity);
