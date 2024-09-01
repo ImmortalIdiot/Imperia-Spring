@@ -30,7 +30,6 @@ public class CultistServiceImpl implements CultistService {
     }
 
     @Override
-    @Transactional
     public CultistResponseDTO promoteCultist(CultistDTO cultistDTO) {
         Cultist cultist = mapCultistDTOToEntity(cultistDTO);
         List<Quest> quests = cultistRepository.findQuestsByCultistId(cultist.getNickname());

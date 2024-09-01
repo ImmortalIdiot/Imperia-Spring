@@ -13,7 +13,6 @@ import java.util.Random;
 public class ManagerRepositoryImpl extends BaseRepositoryImpl<Manager, String> implements ManagerRepository {
 
     @Override
-    @Transactional(readOnly = true)
     public List<Manager> getAllManagers() {
         String selectAllManagers = "Select m FROM Manager m";
         List<Manager> managers = entityManager.createQuery(selectAllManagers, Manager.class).getResultList();

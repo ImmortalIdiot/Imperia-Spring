@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 public class DealRepositoryImpl extends BaseRepositoryImpl<Deal, Long> implements DealRepository {
 
     @Override
-    @Transactional
     public Deal findLatestDeal() {
         String jpql = "SELECT d FROM Deal d WHERE d.id = (SELECT MAX(deal.id) FROM Deal deal)";
         try {
