@@ -25,6 +25,7 @@ public class ManagerRepositoryImpl extends BaseRepositoryImpl<Manager, String> i
         return managers;
     }
 
+    @Override
     public Manager getRandomManager(List<Manager> managers) {
         if (managers.isEmpty()) { throw new ManagerNotFoundException("Managers not founded"); }
         Random randomizer = new Random();
