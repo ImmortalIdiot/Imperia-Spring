@@ -4,7 +4,6 @@ import com.immortalidiot.entities.Deal;
 import com.immortalidiot.repositories.DealRepository;
 import com.immortalidiot.util.exceptions.DealNotFoundException;
 import jakarta.persistence.NoResultException;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 @Repository

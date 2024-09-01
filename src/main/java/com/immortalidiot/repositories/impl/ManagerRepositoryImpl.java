@@ -4,7 +4,6 @@ import com.immortalidiot.entities.Manager;
 import com.immortalidiot.repositories.ManagerRepository;
 import com.immortalidiot.util.exceptions.ManagerNotFoundException;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Random;
