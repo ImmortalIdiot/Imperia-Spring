@@ -4,7 +4,6 @@ import com.immortalidiot.entities.Deal;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface DealRepository {
+public interface DealRepository extends BaseRepository<Deal, Long> {
     Deal findLatestDeal();
-    void save(Deal deal);
 }

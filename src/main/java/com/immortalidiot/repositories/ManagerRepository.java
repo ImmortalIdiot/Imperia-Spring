@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public interface ManagerRepository {
+public interface ManagerRepository extends BaseRepository<Manager, String> {
     List<Manager> getAllManagers();
     Manager getRandomManager(List<Manager> managers);
 }

@@ -8,9 +8,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public interface QuestRepository {
+public interface QuestRepository extends BaseRepository<Quest, Long> {
     List<Quest> findQuestsByCultists(List<Cultist> cultists, List<QuestStatus> statuses);
     List<Quest> findQuestsByQuestStatus(QuestStatus questStatus);
     List<Quest> findByMinGradeAndMinRankAndQuestStatus(String minGrade, String minRank, QuestStatus questStatus);
-    void save(Quest quest);
 }

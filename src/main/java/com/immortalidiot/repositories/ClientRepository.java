@@ -4,7 +4,6 @@ import com.immortalidiot.entities.Client;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface ClientRepository {
-    Client findByContact(String contact);
-    void save(Client client);
+public interface ClientRepository extends BaseRepository<Client, String> {
+
 }
