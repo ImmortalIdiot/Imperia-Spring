@@ -69,7 +69,7 @@ public class CultistServiceImpl implements CultistService {
     }
 
     private void promote(Cultist cultist) {
-        String currentGradeAndRank = "";
+        String currentGradeAndRank;
 
         if (cultist.getRank() == null || cultist.getRank().isBlank()) {
             currentGradeAndRank = cultist.getGrade();
