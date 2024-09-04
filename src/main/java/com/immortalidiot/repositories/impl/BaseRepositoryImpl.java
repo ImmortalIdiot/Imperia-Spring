@@ -4,11 +4,11 @@ import com.immortalidiot.repositories.BaseRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.NoRepositoryBean;
 
 import java.util.Optional;
 
-@Repository
+@NoRepositoryBean
 public abstract class BaseRepositoryImpl <EntityType, EntityPrimaryKeyType>
         implements BaseRepository<EntityType, EntityPrimaryKeyType> {
 
