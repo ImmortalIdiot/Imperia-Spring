@@ -3,7 +3,6 @@ package com.immortalidiot.controllers;
 import com.immortalidiot.services.QuestService;
 import com.immortalidiot.services.dtos.CultistDTO;
 import com.immortalidiot.services.dtos.QuestDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +12,6 @@ public class ChoiceQuestController {
 
     private final QuestService questService;
 
-    @Autowired
     public ChoiceQuestController(QuestService questService) {
         this.questService = questService;
     }

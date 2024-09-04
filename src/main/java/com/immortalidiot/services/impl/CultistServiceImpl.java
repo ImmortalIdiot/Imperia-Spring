@@ -9,7 +9,6 @@ import com.immortalidiot.services.CultistService;
 import com.immortalidiot.services.dtos.CultistDTO;
 import com.immortalidiot.services.dtos.CultistResponseDTO;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -22,7 +21,6 @@ public class CultistServiceImpl implements CultistService {
     private final CultistRepository cultistRepository;
     private final ModelMapper modelMapper;
 
-    @Autowired
     public CultistServiceImpl(CultistRepository cultistRepository, ModelMapper modelMapper) {
         this.cultistRepository = cultistRepository;
         this.modelMapper = modelMapper;

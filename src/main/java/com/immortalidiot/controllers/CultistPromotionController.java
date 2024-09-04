@@ -3,7 +3,6 @@ package com.immortalidiot.controllers;
 import com.immortalidiot.services.CultistService;
 import com.immortalidiot.services.dtos.CultistDTO;
 import com.immortalidiot.services.dtos.CultistResponseDTO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +14,6 @@ public class CultistPromotionController {
 
     private final CultistService cultistService;
 
-    @Autowired
     public CultistPromotionController(CultistService cultistService) {
         this.cultistService = cultistService;
     }

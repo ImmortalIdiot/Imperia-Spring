@@ -13,7 +13,6 @@ import com.immortalidiot.services.dtos.CultistDTO;
 import com.immortalidiot.services.dtos.QuestDTO;
 import com.immortalidiot.util.exceptions.QuestNotFoundException;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -28,7 +27,6 @@ public class QuestServiceImplementation implements QuestService {
     private final QuestRepository questRepository;
     private final ModelMapper modelMapper;
 
-    @Autowired
     public QuestServiceImplementation(DealRepository dealRepository,
                                       QuestRepository questRepository,
                                       ModelMapper modelMapper) {

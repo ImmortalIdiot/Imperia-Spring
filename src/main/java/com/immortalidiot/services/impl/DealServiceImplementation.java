@@ -12,7 +12,6 @@ import com.immortalidiot.services.QuestService;
 import com.immortalidiot.services.dtos.ClientDTO;
 import com.immortalidiot.services.dtos.DealDTO;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,7 +27,6 @@ public class DealServiceImplementation implements DealService {
     private final QuestService questService;
     private final ModelMapper modelMapper;
 
-    @Autowired
     public DealServiceImplementation(DealRepository dealRepository,
                                      ClientService clientService,
                                      ManagerRepository managerRepository,
