@@ -13,6 +13,7 @@ import com.immortalidiot.services.dtos.CultistDTO;
 import com.immortalidiot.services.dtos.QuestDTO;
 import com.immortalidiot.util.exceptions.QuestNotFoundException;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -21,6 +22,7 @@ import java.time.ZoneOffset;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Service
 public class QuestServiceImplementation implements QuestService {
 
     private final DealRepository dealRepository;
