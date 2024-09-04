@@ -4,7 +4,7 @@ public class ClientDTO {
     private String contact;
     private String name;
 
-    private ClientDTO() {}
+    protected ClientDTO() {}
 
     public ClientDTO(String contact, String name) {
         this.contact = contact;

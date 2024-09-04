@@ -21,8 +21,7 @@ public class QuestDTO {
     private Set<String> cultistsNicknames;
     private long dealId;
 
-    public QuestDTO() {
-    }
+    protected QuestDTO() {}
 
     public QuestDTO(Long id,
                     QuestType questType,
