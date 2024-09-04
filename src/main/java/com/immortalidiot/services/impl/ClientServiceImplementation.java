@@ -4,6 +4,7 @@ import com.immortalidiot.entities.Client;
 import com.immortalidiot.repositories.ClientRepository;
 import com.immortalidiot.services.ClientService;
 import com.immortalidiot.services.dtos.ClientDTO;
+import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,18 @@ public class ClientServiceImplementation implements ClientService {
         Client client = modelMapper.map(clientDTO, Client.class);
         client.setContact(clientDTO.getContact());
         client.setName(clientDTO.getName());
-        clientRepository.save(client);
+
+        if (isClientExist(client)) {
+            clientRepository.save(client);
+        }
+    }
+
+    private boolean isClientExist(Client client) {
+        try {
+            clientRepository.findById(Client.class, client.getContact());
+            return true;
+        } catch (EntityNotFoundException e) {
+            return false;
+        }
     }
 }
