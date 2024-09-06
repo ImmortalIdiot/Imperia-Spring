@@ -6,7 +6,6 @@ import com.immortalidiot.util.exceptions.ManagerNotFoundException;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Random;
 
 @Repository
 public class ManagerRepositoryImpl extends BaseRepositoryImpl<Manager, String> implements ManagerRepository {
@@ -21,12 +20,5 @@ public class ManagerRepositoryImpl extends BaseRepositoryImpl<Manager, String> i
         }
 
         return managers;
-    }
-
-    @Override
-    public Manager getRandomManager(List<Manager> managers) {
-        if (managers.isEmpty()) { throw new ManagerNotFoundException("Managers not founded"); }
-        Random randomizer = new Random();
-        return managers.get(randomizer.nextInt(managers.size()));
     }
 }

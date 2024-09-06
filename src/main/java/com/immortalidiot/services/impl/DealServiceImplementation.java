@@ -11,12 +11,15 @@ import com.immortalidiot.services.DealService;
 import com.immortalidiot.services.QuestService;
 import com.immortalidiot.services.dtos.ClientDTO;
 import com.immortalidiot.services.dtos.DealDTO;
+import com.immortalidiot.util.exceptions.ManagerNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Random;
 
 @Service
 public class DealServiceImplementation implements DealService {
@@ -42,7 +45,7 @@ public class DealServiceImplementation implements DealService {
     @Override
     @Transactional
     public DealDTO createDeal(ClientDTO clientDTO, String clientTerms) {
-        Manager manager = managerRepository.getRandomManager(managerRepository.getAllManagers());
+        Manager manager = getRandomManager(managerRepository.getAllManagers());
 
         Client client = mapClientDTOToEntity(clientDTO);
         clientService.registerClient(clientDTO);
@@ -101,6 +104,12 @@ public class DealServiceImplementation implements DealService {
     private void validateDate(LocalDateTime registrationDate, LocalDateTime targetDate) {
         if (registrationDate.isAfter(targetDate)) throw new IllegalArgumentException(
                 "Incorrect registration date or target date");
+    }
+
+    private Manager getRandomManager(List<Manager> managers) {
+        if (managers.isEmpty()) { throw new ManagerNotFoundException("Managers not founded"); }
+        Random randomizer = new Random();
+        return managers.get(randomizer.nextInt(managers.size()));
     }
 
     private Client mapClientDTOToEntity(ClientDTO clientDTO) {
